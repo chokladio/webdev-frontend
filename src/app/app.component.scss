@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300|Montserrat:500');
+
+$primary-color: #D16666;  //Rödish
+$dark-color: #2C4251;     //Mörkblåish
+$grey-color: #C1C1C1;
+
+$Hfont: 'Montserrat', sans-serif;
+$Bfont: 'Lato', sans-serif;
+
+/* Application-wide Styles */
+h1 {
+  color: $dark-color;
+  font-family: $Hfont;
+  font-size: 250%;
+}
+h2, h3 {
+  color: #444;
+  font-family: $Hfont;
+  font-weight: lighter;
+}
+body {
+  margin: 2em;
+}
+body, input[type="text"], button {
+  color: #888;
+  font-family: $Bfont;
+}
+/* everywhere else */
+* {
+  font-family: $Hfont;
+}
