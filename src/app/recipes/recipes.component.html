@@ -1,17 +1,8 @@
-<div *ngIf="selectedRecipe">
-  <h2>Selected: {{selectedRecipe.name | uppercase}}</h2>
-  <div>
-    <label>portions:
-      <input [(ngModel)]="selectedRecipe.portions" placeholder="name">
-    </label>
-  </div>
 
-</div>
 
 <h2>Veckans recept</h2>
-<div class="recipe-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
-
-    <mat-card class="recipe-card" *ngFor="let recipe of recipes" (click)="onSelect(recipe)" cdkDrag>
+<ul class="recipes" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+    <mat-card class="recipe-card" *ngFor="let recipe of recipes" [class.selected]="recipe === selectedRecipe" (click)="onSelect(recipe)" cdkDrag>
       <mat-card-header>
         <mat-card-title>{{recipe.name | uppercase}}</mat-card-title>
         <mat-card-subtitle>id:{{recipe.id}}</mat-card-subtitle>
@@ -26,6 +17,13 @@
         <button mat-button>I want something else</button>
       </mat-card-actions>
     </mat-card>
+</ul>
 
-
+<div *ngIf="selectedRecipe">
+  <h2>Selected: {{selectedRecipe.name | uppercase}}</h2>
+  <div>
+    <label>portions:
+      <input [(ngModel)]="selectedRecipe.portions" placeholder="name">
+    </label>
+  </div>
 </div>
