@@ -15,4 +15,10 @@ export class RecipeService {
   getRecipes(): Observable<Recipe[]> {
     return of(RECIPES);
   }
+
+  getRecipe(id: number): Observable<Recipe> {
+  // TODO: send the message _after_ fetching the recipe
+  //this.messageService.add(`RecipeService: fetched recipe id=${id}`);
+  return of(RECIPES.find(recipe => recipe.id === id));
+}
 }

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 import { Recipe } from '../recipe';
 import { RecipeService } from '../recipe.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.scss']
 })
+
 export class RecipesComponent implements OnInit {
   recipes: Recipe[];
-  selectedRecipe: Recipe;
 
   constructor(private recipeService: RecipeService) { }
 
@@ -18,14 +19,9 @@ export class RecipesComponent implements OnInit {
     this.getRecipes();
   }
 
-
   getRecipes(): void {
     this.recipeService.getRecipes()
       .subscribe(recipes => this.recipes = recipes);
-  }
-
-  onSelect(recipe: Recipe): void {
-    this.selectedRecipe = recipe;
   }
 
   drop(event: CdkDragDrop<string[]>) {

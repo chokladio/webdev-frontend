@@ -1,6 +1,8 @@
 <h2>Veckans recept</h2>
 <ul class="recipes" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
-    <mat-card class="recipe-card" *ngFor="let recipe of recipes" [class.selected]="recipe === selectedRecipe" (click)="onSelect(recipe)" cdkDrag>
+
+  <mat-card class="recipe-card" *ngFor="let recipe of recipes" cdkDrag>
+    <a routerLink="/detail/{{recipe.id}}">
       <mat-card-header>
         <mat-card-title>{{recipe.name | uppercase}}</mat-card-title>
         <mat-card-subtitle>id:{{recipe.id}}</mat-card-subtitle>
@@ -14,7 +16,6 @@
         <button mat-button>Add</button>
         <button mat-button>I want something else</button>
       </mat-card-actions>
-    </mat-card>
+    </a>
+  </mat-card>
 </ul>
-
-<app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
