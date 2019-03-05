@@ -4,4 +4,5 @@ export class Recipe {
   thumbnail: string;
   short_text: string;
   portions: number;
+  ingredients:(string | number)[]
 }

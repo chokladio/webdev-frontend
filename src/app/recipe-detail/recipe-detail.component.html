@@ -1,3 +1,14 @@
-<p>
-  recipe-detail works!
-</p>
+<div *ngIf="recipe">
+  <h2>Selected: {{recipe.name | uppercase}}</h2>
+  <div>
+    <label>portions:
+      <input [(ngModel)]="recipe.portions" placeholder="name">
+    </label>
+  </div>
+  <div class="">
+    {{recipe.short_text}}
+  </div>
+  <ul>
+    {{recipe.ingredients}}
+  </ul>
+</div>
