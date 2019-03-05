@@ -1,7 +1,7 @@
 <div *ngIf="selectedRecipe">
   <h2>Selected: {{selectedRecipe.name | uppercase}}</h2>
   <div>
-    <label>name:
+    <label>portions:
       <input [(ngModel)]="selectedRecipe.portions" placeholder="name">
     </label>
   </div>
@@ -19,9 +19,7 @@
       <img mat-card-image src="{{recipe.thumbnail}}" alt="Photo of {{recipe.name}}">
       <mat-card-content>
         <p>{{recipe.short_text}}</p>
-        <label>portions:
-          <input [(ngModel)]="recipe.portions" placeholder="qt">
-        </label>
+        <p>portions: {{recipe.portions}}</p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-button>Add</button>
