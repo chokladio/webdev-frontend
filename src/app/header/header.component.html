@@ -1,0 +1,26 @@
+<mat-toolbar class="toolbar-mat" color="primary">
+  <span class="fill-remaining-space">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item routerLink="/dashboard">
+        <mat-icon>home</mat-icon>
+        <span >Dashboard</span>
+      </button>
+      <button mat-menu-item routerLink="/weekview">
+        <mat-icon>calendar_today</mat-icon>
+        <span >Your week</span>
+      </button>
+      <button mat-menu-item routerLink="/recipes">
+        <mat-icon>local_dining</mat-icon>
+        <span>Recipes</span>
+      </button>
+      <button mat-menu-item routerLink="/shoppinglist">
+        <mat-icon>shopping_basket</mat-icon>
+        <span >Shopping list</span>
+      </button>
+    </mat-menu>
+  </span>
+  <span class="fill-remaining-space">Matveckan.se</span>
+</mat-toolbar>
