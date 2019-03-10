@@ -1,3 +1,20 @@
-<p>
-  weekview works!
-</p>
+<h2>Min Matvecka!</h2>
+<div class="ng-scope layout-row">
+ 
+  <div class="flex">
+    <ul class="selectedDays">
+      <li *ngFor="let day of selectedDays"
+        [class.selected]="day === selectedDay"
+        (click)="onSelect(day)">
+        <span class="badge">{{day.day}}</span> {{day.recipeName}}
+      </li>
+    </ul>
+  </div> 
+
+  <div class="flex">
+    <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
+  </div>
+</div>
+
+
+
