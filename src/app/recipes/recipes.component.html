@@ -1,7 +1,14 @@
-<h2>Veckans recept</h2>
-<ul class="recipes" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+<mat-drawer-container class="recipe-container">
+  <mat-drawer #drawer position="end" class="recipe-sidenav" mode="side">
+    <p>TESTITEST</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
 
-  <mat-card class="recipe-card" *ngFor="let recipe of recipes" cdkDrag>
+<div class="recipes">
+  <mat-card class="recipe-card" *ngFor="let recipe of recipes" (click)="drawer.toggle()">
     <a routerLink="/detail/{{recipe.id}}">
       <mat-card-header>
         <mat-card-title>{{recipe.name | uppercase}}</mat-card-title>
@@ -13,9 +20,16 @@
         <p>portions: {{recipe.portions}}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>Add</button>
-        <button mat-button>I want something else</button>
+        <button mat-button>change</button>
       </mat-card-actions>
     </a>
   </mat-card>
-</ul>
+</div>
+
+  <div class="recipe-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+
+</mat-drawer-container>

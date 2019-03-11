@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Recipe } from '../recipe';
 import { RecipeService } from '../recipe.service';
