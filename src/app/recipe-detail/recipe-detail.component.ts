@@ -13,7 +13,6 @@ import {RecipeService } from '../recipe.service';
 
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
-  selectedRecipe: Recipe;
 
   constructor(
     private route: ActivatedRoute,

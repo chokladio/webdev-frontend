@@ -1,15 +1,13 @@
-<div *ngIf="recipe">
-  <h2>{{recipe.title | uppercase}}</h2>
-
+<div *ngIf="recipe" class="mat-typography">
+  <h1>{{recipe.title}}</h1>
   <div class="">
-    Directions: {{recipe.directions}}
+    <h2>Instructions</h2>
+    <p>{{recipe.directions}}</p>
   </div>
   <mat-divider></mat-divider>
-  <mat-list dense>
+  <mat-list>
     <mat-list-item *ngFor="let ing of recipe.ingredients">
       {{ing}}
     </mat-list-item>
   </mat-list>
-
-  <button (click)="goBack()">go back</button>
 </div>

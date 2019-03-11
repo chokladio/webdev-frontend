@@ -1,20 +1,21 @@
 <mat-drawer-container class="recipe-container">
   <mat-drawer #drawer position="end" class="recipe-sidenav" mode="side">
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button *ngIf="drawer.opened" (click)="drawer.close()" mat-raised-button class="drawerCloseButton">
+    <button color="primary" *ngIf="drawer.opened" (click)="drawer.close()" mat-raised-button class="drawerCloseButton">
       Close drawer
     </button>
+    <div style="padding:10px 20px;">
     <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
+    </div>
   </mat-drawer>
 
-  <div class="recipes">
+  <div class="recipes" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
     <mat-card class="recipe-card" *ngFor="let recipe of recipes" [class.selected]="recipe === selectedRecipe">
       <a (click)="drawer.open()" (click)="onSelect(recipe)">
         <mat-card-header>
-          <mat-card-title>{{recipe.title | uppercase}}</mat-card-title>
+          <mat-card-title>{{(recipe.title.length>20)? (recipe.title | slice:0:20)+'..':(recipe.title)}}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <img mat-card-image src="{{recipe.thumbnail}}" alt="{{recipe.title}}">
+          <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" alt="{{recipe.title}}">
         </mat-card-content>
       </a>
       <mat-card-actions>
@@ -23,13 +24,6 @@
         </button>
       </mat-card-actions>
     </mat-card>
-  </div>
-
-
-  <div class="recipe-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
   </div>
 
 </mat-drawer-container>
