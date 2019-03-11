@@ -43,11 +43,16 @@ export class WeekviewComponent implements OnInit {
     So on re-randomize or if customer isn't happy with the generated selection =>
     delete from service, and add the new one.
     */
+    
     const allRecipes = this.recipeService.getRecipesAPI().subscribe(recipes => {
       console.log(recipes);
     })
+<<<<<<< HEAD
     console.log(this.recipeService.getStoredRecipes());
 
+=======
+    
+>>>>>>> d195d08016a0ee9a6e6d00a3b0bbe45faf9ba965
     //apply randomize function to allRecipes and return array of same size as 
     //the number of true values in selectedDays.
     //then ->
@@ -56,6 +61,7 @@ export class WeekviewComponent implements OnInit {
     //when customer generates new recipe for a day -> delete previous recipe
     //this.recipeService.removeRecipe(id)
     //add new recipe.
+<<<<<<< HEAD
 
    // this.recipeService.getRecipeAPI('3b05bd629af20456700e1058526a8f43').subscribe(recipe => {
      // console.log(recipe);
@@ -66,6 +72,14 @@ export class WeekviewComponent implements OnInit {
     if (this.selectedDays.length === 0) {
       this.warn();
     }
+=======
+    /*
+    this.recipeService.getRecipeAPI('3b05bd629af20456700e1058526a8f43').subscribe(recipe => {
+      console.log(recipe);
+    })
+    */
+    this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
+>>>>>>> d195d08016a0ee9a6e6d00a3b0bbe45faf9ba965
     console.log(this.selectedDays);
     console.log(this.recipes);
   }
