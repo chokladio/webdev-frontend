@@ -1,29 +1,26 @@
 mat-drawer,
 mat-sidenav {
-  width: 794px;
+  width: 750px;
 }
 
 .mat-drawer-inner-container {
   padding: 20px 10px !important;
 }
 
-.mat-card-title {}
-
-.mat-card-content {
-  height: 90px;
-  width: 240px;
-  overflow: hidden;
-}
-
 .mat-card-image {
   object-fit: cover;
-  height: 140px;
+  overflow: hidden;
+  height: 110px;
+}
+
+.mat-card-header-text{
+  margin: 202px !important;
 }
 
 .mat-card-actions button {
   position: absolute;
   right: 5px;
-  bottom: 5px;
+  bottom: 2px;
 }
 
 .recipe-card:hover {
@@ -32,13 +29,15 @@ mat-sidenav {
 }
 
 .recipe-card {
-  max-width: 240px;
+  width: 220px;
   margin: 4px 6px;
-  height: 160px;
+  height: 175px;
+
 }
 
 .recipe-container {
-  padding: 10px 0;
+  padding: 20px 20px;
+  height:calc(100% - 64px);
 }
 
 .recipes a:hover {

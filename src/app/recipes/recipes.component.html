@@ -2,14 +2,14 @@
 
 <mat-drawer-container class="recipe-container">
   <mat-drawer #drawer position="end" class="recipe-sidenav" mode="side">
-
     <div style="padding:10px 20px;">
-    <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
+      <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
     </div>
+
     <button mat-fab *ngIf="drawer.opened" (click)="drawer.close()" class="mat-fab-bottom-right">
       <!-- todo: fadeIn with drawer opening, change to arrow_back_ios then fade out when clicked -->
-       <mat-icon aria-label="Close drawer">arrow_forward_ios</mat-icon>
-     </button>
+      <mat-icon aria-label="Close drawer">arrow_forward_ios</mat-icon>
+    </button>
   </mat-drawer>
 
   <div class="recipes" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
@@ -17,12 +17,10 @@
       <a (click)="drawer.open()" (click)="onSelect(recipe)">
         <mat-card-header>
           <mat-card-title>
-            {{(recipe.title.length>18)? (recipe.title | slice:0:18)+'..':(recipe.title)}}
+            {{(recipe.title.length>16)? (recipe.title | slice:0:16)+'..':(recipe.title)}}
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-          <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" alt="{{recipe.title}}">
-        </mat-card-content>
+        <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" alt="{{recipe.title}}">
       </a>
       <mat-card-actions>
         <button mat-icon-button (click)="onFavorite(recipe)">

@@ -28,9 +28,7 @@ export class RecipesComponent implements OnInit {
   }
 
   onFavorite(recipe: Recipe): void {
-    let f = localStorage.getItem(recipe.recipe_id);
-    localStorage.setItem(recipe.recipe_id,f=='1'?'0':'1');
-    console.log(localStorage);
+    localStorage.setItem(recipe.recipe_id, this.getLocalValue(recipe.recipe_id) == '1' ? '0' : '1');
   }
 
   getLocalValue(key: string): string {
