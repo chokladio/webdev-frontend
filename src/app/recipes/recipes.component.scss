@@ -1,39 +1,47 @@
-mat-sidenav, mat-drawer {
+mat-drawer,
+mat-sidenav {
   width: 794px;
 }
 
-.drawerCloseButton{
-  position:fixed;
-  right:0;
-  bottom:0;
-}
-
-.mat-drawer-inner-container{
-  padding:10px !important;
-}
-
-.mat-card-content{
-  height:60px;
-}
-
-.mat-card-actions button{
+.drawerCloseButton {
   position: absolute;
-    right: 5px;
-    bottom: 5px;
+  left: 0;
+  bottom: 0;
+}
+
+.mat-drawer-inner-container {
+  padding: 10px !important;
+}
+
+.mat-card-content {
+  height: 75px;
+  width: 240px;
+  overflow: hidden;
+}
+
+.mat-card-actions button {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+.recipe-card:hover {
+  transform:scale(1.03);
 }
 
 .recipe-card {
   max-width: 240px;
-  margin:2px;
+  margin: 4px 6px;
+  height: 160px;
 }
+
 .recipes {
   border: solid 1px #ccc;
   min-height: 60px;
-  display: flex;
-  flex-wrap:wrap;
   background: white;
   border-radius: 4px;
 }
+
 .recipes a {
   color: #888;
   text-decoration: none;
@@ -43,7 +51,7 @@ mat-sidenav, mat-drawer {
 }
 
 .recipes a:hover {
-  color:#607D8B;
+  color: #607D8B;
 }
 
 .selected {
