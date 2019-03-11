@@ -8,7 +8,7 @@ import { RecipeService } from '../recipe.service';
   styleUrls: [ './dashboard.component.scss' ]
 })
 export class DashboardComponent implements OnInit {
-  Recipes: Recipe[] = [];
+  recipes: Recipe[] = [];
 
   constructor(private recipeService: RecipeService) { }
 
@@ -18,6 +18,6 @@ export class DashboardComponent implements OnInit {
 
   getRecipes(): void {
     this.recipeService.getRecipes()
-      .subscribe(Recipes => this.recipes = Recipes.slice(1, 5));
+      .subscribe(recipes => this.recipes = recipes.slice(1, 5));
   }
 }
