@@ -60,6 +60,7 @@ export class DashboardComponent implements OnInit {
       this.warn();
     }
     console.log(formValue);
+    console.log(this.recipes);
   }
 
   get days() {
@@ -76,17 +77,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     console.log("test");
 
-    this.recipeService.getRecipesAPI().subscribe(recipes => {
-      console.log(recipes);
-      recipes.forEach(recipe => this.recipeService.addRecipe(recipe));
+    this.recipeService.getRecipesAPI().subscribe(res => {
+      this.recipes = res;
     })
-
-
-    this.recipeService.getRecipeAPI('3b05bd629af20456700e1058526a8f43').subscribe(recipe => {
-      console.log(recipe);
-    })
-    
-
 
   }
 
