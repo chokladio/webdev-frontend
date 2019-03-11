@@ -3,13 +3,16 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertBoxComponent } from './alert-box/alert-box.component';
 import { MatDialog } from '@angular/material';
-import { SelectedDaysService} from '../selecteddays.service'
+import { SelectedDaysService} from '../selecteddays.service';
+import { RecipeService} from '../recipe.service';
+import { Recipe} from '../recipe';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  private recipes: Recipe[] =[];
 
   selections = {
     days: [
@@ -26,7 +29,7 @@ export class DashboardComponent implements OnInit {
   submitted = false;
   form;
 
-  constructor(private selectedDaysService : SelectedDaysService, private fb: FormBuilder, private router: Router,private dialog:MatDialog) {
+  constructor(private recipeService : RecipeService, private selectedDaysService : SelectedDaysService, private fb: FormBuilder, private router: Router,private dialog:MatDialog) {
     this.form = this.fb.group({
       days: this.buildDays()
     });
@@ -34,6 +37,8 @@ export class DashboardComponent implements OnInit {
 
   warn() {
     this.dialog.open(AlertBoxComponent);
+    console.log(this.recipes);
+
   }
 
 
@@ -70,7 +75,21 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     console.log("test");
+    
+    this.recipeService.getRecipesAPI().subscribe(recipes => {
+      console.log(recipes);
+      recipes.forEach(recipe => this.recipeService.addRecipe(recipe));
+    })
+    
+    
+    this.recipeService.getRecipeAPI('3b05bd629af20456700e1058526a8f43').subscribe(recipe => {
+      console.log(recipe);
+    })
+    
+
+
   }
+
   get diagnostic() {
     return JSON.stringify(this.days);
   }

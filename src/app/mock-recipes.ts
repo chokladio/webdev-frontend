@@ -1,3 +1,4 @@
+/*
 import { Recipe } from './recipe';
 
 export const RECIPES: Recipe[] = [
@@ -9,3 +10,5 @@ export const RECIPES: Recipe[] = [
   { id: 16, name: 'Lutfisk', thumbnail: 'https://images.media-allrecipes.com/userphotos/720x405/3359675.jpg', short_text: 'short text goes here', portions:2, ingredients:[] },
   { id: 17, name: 'Flygande Jacob', thumbnail: 'https://images.media-allrecipes.com/userphotos/720x405/3359675.jpg', short_text: 'short text goes here', portions:3, ingredients:[]  }
 ];
+
+*/

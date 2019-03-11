@@ -20,7 +20,7 @@ export class RecipesComponent implements OnInit {
   }
 
   getRecipes(): void {
-    this.recipeService.getRecipes()
+    this.recipeService.getRecipesAPI()
       .subscribe(recipes => this.recipes = recipes);
   }
 
