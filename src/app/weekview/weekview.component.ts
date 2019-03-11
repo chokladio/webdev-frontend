@@ -43,11 +43,11 @@ export class WeekviewComponent implements OnInit {
     So on re-randomize or if customer isn't happy with the generated selection =>
     delete from service, and add the new one.
     */
-    
+
     this.recipeService.getRecipesAPI().subscribe(recipes => {this.allRecipes = recipes});
     console.log(this.allRecipes);
 
-    //apply randomize function to allRecipes and return array of same size as 
+    //apply randomize function to allRecipes and return array of same size as
     //the number of true values in selectedDays.
     //then ->
     //recipes.forEach(recipe => this.recipeService.addRecipe(recipe));

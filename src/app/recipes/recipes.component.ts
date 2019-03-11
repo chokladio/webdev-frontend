@@ -22,8 +22,4 @@ export class RecipesComponent implements OnInit {
     this.recipeService.getRecipesAPI()
       .subscribe(recipes => this.recipes = recipes);
   }
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.recipes, event.previousIndex, event.currentIndex);
-  }
 }

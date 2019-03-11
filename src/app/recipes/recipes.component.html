@@ -1,15 +1,15 @@
 <mat-drawer-container class="recipe-container">
   <mat-drawer #drawer position="end" class="recipe-sidenav" mode="side">
-    <p>TESTITEST</p>
     <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
     <button (click)="showFiller = !showFiller" mat-raised-button>
       Toggle extra text
     </button>
+    <app-recipe-detail [recipe]="selectedHero"></app-recipe-detail>
   </mat-drawer>
 
 <div class="recipes">
-  <mat-card class="recipe-card" *ngFor="let recipe of recipes" (click)="drawer.toggle()">
-    <a routerLink="/detail/{{recipe.id}}">
+  <mat-card class="recipe-card" *ngFor="let recipe of recipes">
+    <a (click)="drawer.open()" routerLink="/detail/{{recipe.id}}">
       <mat-card-header>
         <mat-card-title>{{recipe.name | uppercase}}</mat-card-title>
         <mat-card-subtitle>id:{{recipe.id}}</mat-card-subtitle>
@@ -25,6 +25,7 @@
     </a>
   </mat-card>
 </div>
+
 
   <div class="recipe-sidenav-content">
     <button type="button" mat-button (click)="drawer.toggle()">
