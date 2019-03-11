@@ -22,7 +22,7 @@ export class RecipeService {
     this.recipes = this.recipes.filter((recipe:Recipe) => recipe.recipe_id !== id);
   }
 
-  
+
   getRecipesAPI(): Observable<Recipe[]> {
     return this.httpClient.get(`${this.baseUrl}recipes/all`).pipe(
       map((data: any[]) => data.map ((item:any) => new Recipe(
@@ -31,17 +31,17 @@ export class RecipeService {
 
     );
   }
-  
+
 
   getStoredRecipes() {
     return this.recipes;
   }
-  
+
   getRecipeAPI(id): Observable<Recipe> {
     return this.httpClient.get<Recipe>(`${this.baseUrl}recipes/${id}`).pipe(
       map(res => new Recipe(res)))
   }
-  
+
 }
 
 /*

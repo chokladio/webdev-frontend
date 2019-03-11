@@ -26,7 +26,7 @@ export class RecipeDetailComponent implements OnInit {
 
   getRecipe(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.recipeService.getRecipe(id)
+    this.recipeService.getRecipeAPI(id)
       .subscribe(recipe => this.recipe = recipe);
   }
 
