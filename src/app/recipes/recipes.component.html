@@ -1,21 +1,31 @@
-<h2>Veckans recept</h2>
-<ul class="recipes" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+<!-- om vi ska pipea sortering sen: https://stackoverflow.com/questions/35158817/angular-2-orderby-pipe -->
 
-  <mat-card class="recipe-card" *ngFor="let recipe of recipes" cdkDrag>
-    <a routerLink="/detail/{{recipe.id}}">
-      <mat-card-header>
-        <mat-card-title>{{recipe.name | uppercase}}</mat-card-title>
-        <mat-card-subtitle>id:{{recipe.id}}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="{{recipe.thumbnail}}" alt="Photo of {{recipe.name}}">
-      <mat-card-content>
-        <p>{{recipe.short_text}}</p>
-        <p>portions: {{recipe.portions}}</p>
-      </mat-card-content>
+<mat-drawer-container class="recipe-container">
+  <mat-drawer #drawer position="end" class="recipe-sidenav" mode="side">
+    <button color="primary" *ngIf="drawer.opened" (click)="drawer.close()" mat-raised-button class="drawerCloseButton">
+      Close drawer
+    </button>
+    <div style="padding:10px 20px;">
+    <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
+    </div>
+  </mat-drawer>
+
+  <div class="recipes" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+    <mat-card class="recipe-card" *ngFor="let recipe of recipes" [class.selected]="recipe === selectedRecipe">
+      <a (click)="drawer.open()" (click)="onSelect(recipe)">
+        <mat-card-header>
+          <mat-card-title>{{(recipe.title.length>19)? (recipe.title | slice:0:19)+'..':(recipe.title)}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" alt="{{recipe.title}}">
+        </mat-card-content>
+      </a>
       <mat-card-actions>
-        <button mat-button>Add</button>
-        <button mat-button>I want something else</button>
+        <button mat-icon-button>
+          <mat-icon aria-label="Favorite">favorite_border</mat-icon>
+        </button>
       </mat-card-actions>
-    </a>
-  </mat-card>
-</ul>
+    </mat-card>
+  </div>
+
+</mat-drawer-container>

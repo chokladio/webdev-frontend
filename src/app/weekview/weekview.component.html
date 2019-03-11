@@ -5,7 +5,7 @@ fxLayout.xs="column"
 fxLayoutAlign="space-between"
 fxLayoutGap="10px"
 fxLayoutGap.xs="0">
- 
+
   <div class="item item-1">
     <ul class="selectedDays">
       <li *ngFor="let day of selectedDays"
@@ -14,13 +14,10 @@ fxLayoutGap.xs="0">
         <span class="badge">{{day.day}}</span> {{day.recipeName}}
       </li>
     </ul>
-  </div> 
+  </div>
 
   <div class="item item-2">
-    <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
-    
+    <!-- <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail> -->
+
   </div>
 </div>
-
-
-

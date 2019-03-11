@@ -2,7 +2,7 @@
 <h3>Check the boxes for the days you want recipes!</h3>
 
 <form class="checkbox-form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-  <div fxLayout="row" fxLayoutAlign="space-evenly center">
+  <div style="max-width:1000px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
     <div *ngFor="let day of days.controls; let i = index">
       <mat-checkbox [formControl]="day">
         {{selections.days[i].day}}

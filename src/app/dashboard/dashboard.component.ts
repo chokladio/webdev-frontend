@@ -38,9 +38,7 @@ export class DashboardComponent implements OnInit {
   warn() {
     this.dialog.open(AlertBoxComponent);
     console.log(this.recipes);
-
   }
-
 
   onSubmit(form) {
     const formValue = Object.assign({}, form.value, {
@@ -80,7 +78,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("test");
 
     this.recipeService.getRecipesAPI().subscribe(res => {
       this.recipes = res;
