@@ -1,15 +1,15 @@
 <div *ngIf="recipe">
-  <h2>Selected: {{recipe.name | uppercase}}</h2>
+  <h2>The day's recipe: {{recipe.title | uppercase}}</h2>
   <div>
-    <label>portions:
+    <label>Portions:
       <input [(ngModel)]="recipe.portions" placeholder="name">
     </label>
   </div>
   <div class="">
-    {{recipe.short_text}}
+    Instructions: {{recipe.directions}}
   </div>
   <ul>
-    {{recipe.ingredients}}
+    Ingredients: {{recipe.ingredients}}
   </ul>
   <button (click)="goBack()">go back</button>
 </div>

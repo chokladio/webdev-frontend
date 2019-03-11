@@ -19,6 +19,8 @@ export class WeekviewComponent implements OnInit {
   selectedDays = []
   selectedRecipe: Recipe;
   recipes = []
+  selectedDay: Day;
+
 
   constructor(private sds:SelectedDaysService, private recipeService: RecipeService,private router: Router, private dialog: MatDialog) { }
 
@@ -44,50 +46,7 @@ export class WeekviewComponent implements OnInit {
     const allRecipes = this.recipeService.getRecipesAPI().subscribe(recipes => {
       console.log(recipes);
     })
-    this.buildSelectedDays()
-    if (this.selectedDays.length === 0) {
-      this.warn();
-    }
-    console.log(this.selectedDays);
-    console.log(this.recipes);
-  }
-
-
-  onSelect(day: Day): void {
-    let recipe = this.recipes[day.recipeId];
-    this.selectedRecipe = recipe;
-  }
-
-  buildSelectedDays() {
-    let newDays = [];
-    this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
-    this.selectedDays.forEach(day =>
-      {if (day.selected === true) {
-        let recipeId = Math.floor(Math.random() * this.recipes.length);
-        newDays.push({...day, recipeId: recipeId, recipeName: this.recipes[recipeId].name});
-      }}
-    )
-    this.selectedDays = newDays;
-  }
-
-  wow() {
-
-    /*
-    pull new backend!
-    run server first. (only one recipe in database currently) Then:
-    */
-
-    /*
-    Examples of how to use the recipe service. Note the addRecipe:
-    The entirety of the app is depending on which recipes are added to the service.
-    Consider this our store of states, i.e. not unlike redux store.
-    Every page will fetch data from the recipe service,
-    So on re-randomize or if customer isn't happy with the generated selection =>
-    delete from service, and add the new one.
-    */
-    const allRecipes = this.recipeService.getRecipesAPI().subscribe(recipes => {
-      console.log(recipes);
-    })
+    console.log(this.recipeService.getStoredRecipes());
 
     //apply randomize function to allRecipes and return array of same size as 
     //the number of true values in selectedDays.
@@ -98,16 +57,45 @@ export class WeekviewComponent implements OnInit {
     //this.recipeService.removeRecipe(id)
     //add new recipe.
 
-    this.recipeService.getRecipeAPI('3b05bd629af20456700e1058526a8f43').subscribe(recipe => {
-      console.log(recipe);
-    })
+   // this.recipeService.getRecipeAPI('3b05bd629af20456700e1058526a8f43').subscribe(recipe => {
+     // console.log(recipe);
+    //})
 
-    this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
+
+    this.buildSelectedDays()
+    if (this.selectedDays.length === 0) {
+      this.warn();
+    }
     console.log(this.selectedDays);
-    console.log(this.recipeService.getStoredRecipes());
-    this.recipeService.removeRecipe('3b05bd629af20456700e1058526a8f43');
-    console.log(this.recipeService.getStoredRecipes());
+    console.log(this.recipes);
+  }
 
+
+  onSelect(day: Day): void {
+    let recipe = this.recipeService.getStoredRecipes()[day.recipeId];
+    this.selectedRecipe = recipe;
+    this.selectedDay = day;
+  }
+
+  generateNew() {
+    let recipeId = Math.floor(Math.random() * this.recipeService.getStoredRecipes().length);
+    this.recipeService.removeRecipe(this.recipeService.getStoredRecipes()[this.selectedDay.recipeId].getID);
+    let newDay = {...this.selectedDay, recipeId: recipeId, recipeName: 'TEST'};
+    this.selectedDays.join
+    this.selectedDay = newDay; 
+  }
+
+  buildSelectedDays() {
+    let newDays = [];
+    this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
+    this.selectedDays.forEach(day =>
+      {if (day.selected === true) {
+        let recipeId = Math.floor(Math.random() * this.recipeService.getStoredRecipes().length);
+        this.recipeService.addRecipe(this.recipeService.getStoredRecipes()[recipeId]);
+        newDays.push({...day, recipeId: recipeId, recipeName: this.recipeService.getStoredRecipes()[recipeId].title});
+      }}
+    )
+    this.selectedDays = newDays;
   }
 
 }

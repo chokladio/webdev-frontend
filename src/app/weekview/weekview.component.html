@@ -1,7 +1,12 @@
-<h2>Min Matvecka!</h2>
-<div class="ng-scope layout-row">
+<h2>My Foodweek!</h2>
+<div class="container"
+fxLayout
+fxLayout.xs="column"
+fxLayoutAlign="space-between"
+fxLayoutGap="10px"
+fxLayoutGap.xs="0">
  
-  <div class="flex">
+  <div class="item item-1">
     <ul class="selectedDays">
       <li *ngFor="let day of selectedDays"
         [class.selected]="day === selectedDay"
@@ -11,8 +16,9 @@
     </ul>
   </div> 
 
-  <div class="flex">
+  <div class="item item-2">
     <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
+    
   </div>
 </div>
 
