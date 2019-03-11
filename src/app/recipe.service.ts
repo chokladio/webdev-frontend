@@ -1,7 +1,7 @@
 //Det är den här rackaren som ska hämta data från pythonservern
 import { Injectable } from '@angular/core';
 import { Recipe } from './recipe';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, } from 'rxjs';
 import { map, } from 'rxjs/operators';
 
@@ -12,6 +12,11 @@ export class RecipeService {
 
   private recipes: Recipe[] = [];
   baseUrl: string = 'http://localhost:7007/';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':'application/json'
+    })
+  };
 
   constructor(private httpClient: HttpClient) { }
 
@@ -30,6 +35,10 @@ export class RecipeService {
       ))),
 
     );
+  }
+
+  createNewRecipeAPI(recipe:Recipe): Observable<Recipe> {
+    return this.httpClient.post<Recipe>(`${this.baseUrl}recipes/create`,JSON.stringify(recipe),this.httpOptions)
   }
 
 

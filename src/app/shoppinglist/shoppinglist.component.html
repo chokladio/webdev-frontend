@@ -1,5 +1,22 @@
-<mat-chip-list class="mat-chip-list-stacked" aria-orientation="vertical">
-  <div *ngFor="let ingredient of ingredients; let i = index">
-    <mat-chip>{{ingredient}}</mat-chip>
+<h3>Your shopping list</h3>
+
+<button mat-button (click)="apiCreateTest()">Apicreate</button>
+<button mat-button (click)="sortData()">sort</button>
+<mat-selection-list #ingredients>
+  <div *ngFor="let recipe of recipes ; let i=index;">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        {{recipe.title}}
+      </mat-expansion-panel-header>
+        <mat-list-option *ngFor="let ingredient of recipe.ingredients">
+          {{ingredient}}
+        </mat-list-option>
+    </mat-expansion-panel>
   </div>
-</mat-chip-list>
+</mat-selection-list>
+
+<mat-selection-list #sorted>
+  <mat-list-option *ngFor="let in of allIngredients">
+    {{in}}
+  </mat-list-option>
+</mat-selection-list>
