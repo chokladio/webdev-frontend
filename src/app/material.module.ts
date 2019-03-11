@@ -13,7 +13,8 @@ import {
     MatInputModule,
     MatDialogModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatChipsModule
 } from  '@angular/material';
 
 
@@ -30,7 +31,8 @@ imports: [
     MatSelectModule,
     MatInputModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatChipsModule
 ],
 exports: [
     MatButtonModule,
@@ -45,7 +47,8 @@ exports: [
     MatSelectModule,
     MatInputModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatChipsModule
 ],
 
 })
