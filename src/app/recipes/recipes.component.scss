@@ -1,5 +1,5 @@
 mat-sidenav, mat-drawer {
-  width: 814px;
+  width: 794px;
 }
 
 .drawerCloseButton{
@@ -9,6 +9,17 @@ mat-sidenav, mat-drawer {
 }
 
 .mat-drawer-inner-container{
+  padding:10px !important;
+}
+
+.mat-card-content{
+  height:60px;
+}
+
+.mat-card-actions button{
+  position: absolute;
+    right: 5px;
+    bottom: 5px;
 }
 
 .recipe-card {
