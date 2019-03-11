@@ -3,12 +3,6 @@ mat-sidenav {
   width: 794px;
 }
 
-.drawerCloseButton {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-}
-
 .mat-drawer-inner-container {
   padding: 20px 10px !important;
 }
@@ -21,9 +15,9 @@ mat-sidenav {
   overflow: hidden;
 }
 
-.mat-card-image{
+.mat-card-image {
   object-fit: cover;
-  height:140px;
+  height: 140px;
 }
 
 .mat-card-actions button {
@@ -54,4 +48,19 @@ mat-sidenav {
 .selected {
   background-color: #90a4ae !important;
   color: white;
+}
+
+.mat-fab-bottom-right {
+  top: auto !important;
+  right: 20px !important;
+  bottom: 12px !important;
+  left: auto !important;
+  position: fixed !important;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  15% {opacity: 0;}
+  100% {opacity: 1;}
 }

@@ -2,12 +2,14 @@
 
 <mat-drawer-container class="recipe-container">
   <mat-drawer #drawer position="end" class="recipe-sidenav" mode="side">
-    <button color="primary" *ngIf="drawer.opened" (click)="drawer.close()" mat-raised-button class="drawerCloseButton">
-      Close drawer
-    </button>
+
     <div style="padding:10px 20px;">
     <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
     </div>
+    <button mat-fab *ngIf="drawer.opened" (click)="drawer.close()" class="mat-fab-bottom-right">
+      <!-- todo: fadeIn with drawer opening, change to arrow_back_ios then fade out when clicked -->
+       <mat-icon aria-label="Close drawer">arrow_forward_ios</mat-icon>
+     </button>
   </mat-drawer>
 
   <div class="recipes" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
