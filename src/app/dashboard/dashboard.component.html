@@ -1,9 +1,15 @@
-<h3>Top Recipes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let recipe of recipes" class="col-1-4"
-    routerLink="/detail/{{recipe.id}}">
-  <div class="module recipe">
-    <h4>{{recipe.name}}</h4>
+<h2>Welcome</h2>
+<h3>Check the boxes for the days you want recipes!</h3>
+
+<form class="checkbox-form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <div *ngFor="let day of days.controls; let i = index">
+      <mat-checkbox [formControl]="day">
+        {{selections.days[i].day}}
+      </mat-checkbox>
+    </div>
   </div>
-</a>
-</div>
+  <div class="submit-button" fxLayoutAlign="center">
+    <button mat-raised-button color="primary" type="submit">Generate!</button>
+  </div>
+</form>
