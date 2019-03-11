@@ -22,4 +22,8 @@ export class RecipesComponent implements OnInit {
     this.recipeService.getRecipesAPI()
       .subscribe(recipes => this.recipes = recipes);
   }
+
+  onSelect(recipe: Recipe): void {
+   this.selectedRecipe = recipe;
+  }
 }

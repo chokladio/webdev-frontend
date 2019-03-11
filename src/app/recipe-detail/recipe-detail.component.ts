@@ -13,7 +13,7 @@ import {RecipeService } from '../recipe.service';
 
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
-  selectedHero: Hero;
+  selectedRecipe: Recipe;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,10 +29,6 @@ export class RecipeDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.recipeService.getRecipeAPI(id)
       .subscribe(recipe => this.recipe = recipe);
-  }
-
-  onSelect(hero: Hero): void {
-   this.selectedHero = hero;
   }
 
   goBack(): void {

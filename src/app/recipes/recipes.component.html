@@ -1,23 +1,22 @@
 <mat-drawer-container class="recipe-container">
   <mat-drawer #drawer position="end" class="recipe-sidenav" mode="side">
     <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
+    <button *ngIf="drawer.opened" (click)="drawer.close()" mat-raised-button class="fill-remaining-space drawerCloseButton">
+      Close drawer
     </button>
-    <app-recipe-detail [recipe]="selectedHero"></app-recipe-detail>
+    <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
   </mat-drawer>
 
 <div class="recipes">
-  <mat-card class="recipe-card" *ngFor="let recipe of recipes">
-    <a (click)="drawer.open()" routerLink="/detail/{{recipe.id}}">
+  <mat-card class="recipe-card" *ngFor="let recipe of recipes"
+  [class.selected]="recipe === selectedRecipe"
+  (click)="onSelect(recipe)">
+    <a (click)="drawer.open()">
       <mat-card-header>
-        <mat-card-title>{{recipe.name | uppercase}}</mat-card-title>
-        <mat-card-subtitle>id:{{recipe.id}}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="{{recipe.thumbnail}}" alt="Photo of {{recipe.name}}">
-      <mat-card-content>
-        <p>{{recipe.short_text}}</p>
-        <p>portions: {{recipe.portions}}</p>
+        <mat-card-title>{{recipe.title | uppercase}}</mat-card-title>
+        </mat-card-header>
+      <mat-card-content><img mat-card-image src="{{recipe.thumbnail}}" alt="{{recipe.title}}">
+
       </mat-card-content>
       <mat-card-actions>
         <button mat-button>change</button>

@@ -1,16 +1,16 @@
-<p>hej</p>
+<div class="drawerContainer">
+
 <div *ngIf="recipe">
-  <h2>The day's recipe: {{recipe.title | uppercase}}</h2>
-  <div>
-    <label>Portions:
-      <input [(ngModel)]="recipe.portions" placeholder="name">
-    </label>
-  </div>
+  <h2>{{recipe.title | uppercase}}</h2>
+
   <div class="">
-    Instructions: {{recipe.directions}}
+    Directions: {{recipe.directions}}
   </div>
+  <mat-divider></mat-divider>
   <ul>
+
     Ingredients: {{recipe.ingredients}}
   </ul>
   <button (click)="goBack()">go back</button>
+</div>
 </div>
