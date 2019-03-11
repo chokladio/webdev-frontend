@@ -28,10 +28,11 @@ export class WeekviewComponent implements OnInit {
     delete from service, and add the new one.
     */
     
+    /*
     const allRecipes = this.recipeService.getRecipesAPI().subscribe(recipes => {
       console.log(recipes);
     })
-    
+    */
     //apply randomize function to allRecipes and return array of same size as 
     //the number of true values in selectedDays.
     //then ->
@@ -45,11 +46,12 @@ export class WeekviewComponent implements OnInit {
       console.log(recipe);
     })
     */
-    this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
-    console.log(this.selectedDays);
-    console.log(this.recipeService.getStoredRecipes());
-    this.recipeService.removeRecipe('3b05bd629af20456700e1058526a8f43');
-    console.log(this.recipeService.getStoredRecipes());
+   this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
+   console.log("These days are select");
+   console.log(this.selectedDays);
+   console.log("These are the saved recipes");
+   console.log(this.recipeService.getStoredRecipes());
+   
 
   }
 

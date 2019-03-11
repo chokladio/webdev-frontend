@@ -53,14 +53,13 @@ export class DashboardComponent implements OnInit {
     });
     this.selectedDaysService.clear();
     this.selectedDaysService.add(formValue);
+    this.saveSomeRecipes();
     //If atleast one box is checked:
     if (formValue.selections.some(day => day.selected)) {
       this.router.navigate(['/weekview'])
     } else {
       this.warn();
     }
-    console.log(formValue);
-    console.log(this.recipes);
   }
 
   get days() {
@@ -72,6 +71,12 @@ export class DashboardComponent implements OnInit {
       return this.fb.control(day.selected)
     });
     return this.fb.array(arr);
+  }
+
+  saveSomeRecipes() {
+    for(var i = 0; i<5 ; i++) {
+      this.recipeService.addRecipe(this.recipes[i]);
+    } 
   }
 
   ngOnInit() {

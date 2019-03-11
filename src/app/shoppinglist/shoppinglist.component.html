@@ -1,3 +1,5 @@
-<p>
-  shoppinglist works!
-</p>
+<mat-chip-list class="mat-chip-list-stacked" aria-orientation="vertical">
+  <div *ngFor="let ingredient of ingredients; let i = index">
+    <mat-chip>{{ingredient}}</mat-chip>
+  </div>
+</mat-chip-list>

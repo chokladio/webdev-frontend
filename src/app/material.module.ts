@@ -12,6 +12,7 @@ import {
     MatSelectModule,
     MatInputModule,
     MatDialogModule,
+    MatChipsModule,
 } from  '@angular/material';
  
  
@@ -27,6 +28,7 @@ imports: [
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
+    MatChipsModule,
 ],
 exports: [
     MatButtonModule, 
@@ -40,6 +42,7 @@ exports: [
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
+    MatChipsModule,
 ],
  
 })
