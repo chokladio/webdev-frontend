@@ -1,3 +1,41 @@
-mat-list-item{
-  height:36px;
+mat-list-item {
+  height: 36px;
+}
+
+h1 {
+  color: #FF4081;
+}
+
+.header-image img{
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+  border-radius:3px;
+}
+
+.header-image h1{
+  font-size: 2.5em;
+  color: white;
+}
+
+
+.text{
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  width: 95%;
+  height: 200px;
+  background: rgba(62, 62, 62, 0.5);
+  text-align: center;
+}
+
+.text:after{
+    content:'';
+    width:1px; height:100%;
+    vertical-align:middle;
+    display:inline-block;
+}
+.text span{
+    display:inline-block;
+    vertical-align:middle;
 }

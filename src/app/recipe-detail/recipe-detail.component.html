@@ -1,5 +1,8 @@
 <div *ngIf="recipe" class="mat-typography">
-  <h1>{{recipe.title}}</h1>
+  <div class="header-image">
+    <img src="assets/{{recipe.recipe_id}}.jpg" alt="">
+    <div class="text"><span><h1>{{recipe.title}}</h1></span></div>
+  </div>
   <div style="padding:10px;">
     <h2>Instructions</h2>
     <p>{{recipe.directions}}</p>

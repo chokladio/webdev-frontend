@@ -14,7 +14,9 @@
     <mat-card class="recipe-card" *ngFor="let recipe of recipes" [class.selected]="recipe === selectedRecipe">
       <a (click)="drawer.open()" (click)="onSelect(recipe)">
         <mat-card-header>
-          <mat-card-title>{{(recipe.title.length>19)? (recipe.title | slice:0:19)+'..':(recipe.title)}}</mat-card-title>
+          <mat-card-title>
+            {{(recipe.title.length>18)? (recipe.title | slice:0:18)+'..':(recipe.title)}}
+          </mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" alt="{{recipe.title}}">
