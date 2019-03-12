@@ -1,16 +1,16 @@
 <mat-toolbar class="toolbar-mat" color="primary">
-  <span class="fill-remaining-space">
+  <span fxHide.gt-sm class="fill-remaining-space">
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
       <button mat-menu-item routerLink="/dashboard">
         <mat-icon>home</mat-icon>
-        <span >Dashboard</span>
+        <span>Home</span>
       </button>
       <button mat-menu-item routerLink="/weekview">
         <mat-icon>calendar_today</mat-icon>
-        <span >Your week</span>
+        <span>Your week</span>
       </button>
       <button mat-menu-item routerLink="/recipes">
         <mat-icon>local_dining</mat-icon>
@@ -18,9 +18,21 @@
       </button>
       <button mat-menu-item routerLink="/shoppinglist">
         <mat-icon>shopping_basket</mat-icon>
-        <span >Shopping list</span>
+        <span>Shopping list</span>
       </button>
     </mat-menu>
   </span>
-  <span class="fill-remaining-space"><a href="/dashboard">Matveckan.se</a></span>
+
+  <div fxFlex fxLayout fxLayoutAlign="start" fxHide.sm fxHide.xs>
+    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+      <li><a routerLink="/dashboard">Home</a></li>
+      <li><a routerLink="/weekview">Your week</a></li>
+      <li><a routerLink="/recipes">Recipes</a></li>
+      <li><a routerLink="/shoppinglist">Shopping list</a></li>
+    </ul>
+  </div>
+
+  <span class="fill-remaining-space" >
+    <a href="/dashboard">Matveckan.se</a>
+  </span>
 </mat-toolbar>

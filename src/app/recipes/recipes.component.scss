@@ -7,14 +7,24 @@ mat-sidenav {
   padding: 20px 10px !important;
 }
 
+.mat-card{
+  padding:13px 0 ;
+}
+
 .mat-card-image {
   object-fit: cover;
   overflow: hidden;
   height: 110px;
+  width:100%;
+  margin:0;
 }
 
 .mat-card-header-text{
-  margin: 202px !important;
+  margin: 0 !important;
+}
+
+.recipe-card-header div{
+  margin:0;
 }
 
 .mat-card-actions button {
