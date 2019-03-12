@@ -74,16 +74,21 @@ export class WeekviewComponent implements OnInit {
                 recipeId = Math.floor(Math.random() * this.allRecipes.length);
                 console.log(recipeId);
               }
-              this.recipeService.addRecipe(this.allRecipes[recipeId]);
-              newDays.push({...day, recipeId: this.allRecipes[recipeId].getID(), recipeName: this.allRecipes[recipeId].title});
+              let newRecipe = this.allRecipes[recipeId];
+              newRecipe.setDay(day.day);
+              this.recipeService.addRecipe(newRecipe);
+              newDays.push({...day, recipeId: newRecipe.getID(), recipeName: newRecipe.title});
             }}
           )
         } else {
           let index = 0;
           this.selectedDays.forEach(day =>
             {if (day.selected === true) {
-              newDays.push({...day, recipeId: this.recipeService.getStoredRecipes()[index].getID(), recipeName: this.recipeService.getStoredRecipes()[index].title});
-              index++;
+              this.recipeService.getStoredRecipes().forEach( (recipe: Recipe) => {
+                if (recipe.day === day.day) {
+                  newDays.push({...day, recipeId: recipe.getID(), recipeName: recipe.title});
+                }
+              })
             }}
           )
         }
@@ -112,8 +117,10 @@ export class WeekviewComponent implements OnInit {
       console.log(recipeId);
     }
     this.recipeService.removeRecipe(this.selectedDay.recipeId);
-    this.recipeService.addRecipe(this.allRecipes[recipeId]);
-    let newDay = {...this.selectedDay, recipeId: this.allRecipes[recipeId].getID(), recipeName: this.allRecipes[recipeId].title};
+    let newRecipe = this.allRecipes[recipeId];
+    newRecipe.setDay(this.selectedDay.day);
+    this.recipeService.addRecipe(newRecipe);
+    let newDay = {...this.selectedDay, recipeId: newRecipe.getID(), recipeName: newRecipe.title};
     this.selectedDays[this.selectedDays.indexOf(this.selectedDay)] = newDay
     this.onSelect(newDay);
     console.log(this.recipeService.getStoredRecipes());

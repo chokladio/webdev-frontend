@@ -3,7 +3,9 @@ export class Recipe {
   title: string;
   recipe_url: string;
   directions: string;
-  ingredients:(string | number)[]
+  ingredients:(string | number)[];
+  day: string;
+
 
   constructor(data: Object|Recipe) {
     Object.assign(this,data);
@@ -12,5 +14,9 @@ export class Recipe {
 
   getID() {
     return this.recipe_id;
+  }
+
+  setDay(day: string) {
+    this.day = day;
   }
 }
