@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit {
 
   warn() {
     this.dialog.open(AlertBoxComponent);
-    console.log(this.recipes);
   }
 
   onSubmit(form) {

@@ -29,8 +29,7 @@ export class WeekviewComponent implements OnInit {
   constructor(private sds: SelectedDaysService, private recipeService: RecipeService, private router: Router, private dialog: MatDialog) { }
 
   warn() {
-    this.dialog.open(AlertBoxComponent);
-    this.router.navigate(['/dashboard'])
+    this.dialog.open(WVAlertBoxComponent);
   }
 
   ngOnInit() {
@@ -84,16 +83,14 @@ export class WeekviewComponent implements OnInit {
           })
         } else {
           let index = 0;
+
           this.selectedDays.forEach(day => {
-            if (day.selected === true) {
               this.recipeService.getStoredRecipes().forEach((recipe: Recipe) => {
                 if (recipe.day === day.day) {
                   newDays.push({ ...day, recipe_id: recipe.getID(), title: recipe.title });
                 }
               })
-            }
-          }
-          )
+          })
         }
         this.selectedDays = newDays;
         console.log(this.recipeService.getStoredRecipes())
@@ -109,9 +106,6 @@ export class WeekviewComponent implements OnInit {
   }
 
   generateNew() {
-    if (isUndefined(this.selectedDay)) {
-      this.dialog.open(WVAlertBoxComponent);
-    } else {
       let recipe_id = Math.floor(Math.random() * this.allRecipes.length);
       while (this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === this.allRecipes[recipe_id].getID()).length !== 0) {
         recipe_id = Math.floor(Math.random() * this.allRecipes.length);
@@ -126,7 +120,6 @@ export class WeekviewComponent implements OnInit {
       this.onSelect(newDay);
       console.log(this.recipeService.getStoredRecipes());
     }
-  }
 
   buildSelectedDays() {
     let newDays = [];
