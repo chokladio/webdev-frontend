@@ -10,13 +10,13 @@ import { Recipe } from '../recipe';
 export class RecipeCardComponent implements OnInit {
   @Input() recipe: Recipe;
   @Input() drawer: Promise;
+  @Input() selectedRecipe: Recipe;
+
   @Output() selRec = new EventEmitter<Recipe>();
-  @Input() selectedRecipe : Recipe;
 
+  constructor() { }
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSelect(recipe: Recipe): void {
     this.selRec.emit(recipe);
