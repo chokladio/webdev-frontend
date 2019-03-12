@@ -1,48 +1,76 @@
+mat-drawer,
+mat-sidenav {
+  width: 750px;
+}
+
+.mat-drawer-inner-container {
+  padding: 20px 10px !important;
+}
+
+.mat-card{
+  padding:13px 0 ;
+}
+
+.mat-card-image {
+  object-fit: cover;
+  overflow: hidden;
+  height: 200px;
+  width:100%;
+  margin:0;
+}
+
+.mat-card-header-text{
+  margin: 0 !important;
+}
+
+.mat-card-header div{
+  margin:0;
+}
+
+.mat-card-actions button {
+  position: absolute;
+  right: 5px;
+  bottom: 2px;
+}
+
+.day-card:hover {
+  //transform:scale(1.03);
+  border-radius: 0;
+}
+
+.day-card {
+  width: 500px;
+  margin: 4px 6px;
+}
+
+.weekview-container {
+  padding: 20px 20px;
+  height:calc(100% - 64px);
+}
+
+.selectedDays a:hover {
+  color: primary;
+}
+
 .selected {
-    background-color: #CFD8DC !important;
-    color: white;
-  }
-  .selectedDays {
-    margin: 0 0 2em 0;
-    list-style-type: none;
-    padding: 0;
-    width: 30em;
-  }
-  .selectedDays li {
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #EEE;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
-    border-radius: 4px;
-  }
-  .selectedDays li.selected:hover {
-    background-color: #BBD8DC !important;
-    color: white;
-  }
-  .selectedDays li:hover {
-    color: #607D8B;
-    background-color: #DDD;
-    left: .1em;
-  }
-  .selectedDays .text {
-    position: relative;
-    top: -3px;
-  }
-  .selectedDays .badge {
-    display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #607D8B;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
-  }
+  background-color: #90a4ae !important;
+  color: white;
+}
+
+.mat-fab-bottom-right {
+  top: auto !important;
+  right: 20px !important;
+  bottom: 12px !important;
+  left: auto !important;
+  position: fixed !important;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  15% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
   
