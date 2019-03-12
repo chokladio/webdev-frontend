@@ -18,7 +18,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 export class WeekviewComponent implements OnInit {
   selectedDays = []
   selectedRecipe: Recipe;
-  allRecipes = [];
+  allRecipes: Recipe[] = [];
   selectedDay: Day;
 
 
@@ -43,9 +43,19 @@ export class WeekviewComponent implements OnInit {
     So on re-randomize or if customer isn't happy with the generated selection =>
     delete from service, and add the new one.
     */
+
+    this.recipeService.removeRecipe('3b05bd629af20456700e1058526a8f43');
+    this.recipeService.removeRecipe('eec90422b0337b26c4f7c3d7ba4a543e');
+    this.recipeService.removeRecipe('b5a0d5c98b08f7ab96eb5742abe29615');
+    this.recipeService.removeRecipe('a0dfe5e54b151bb3cb8db6e8e1b67bde');
+    this.recipeService.removeRecipe('4dcb50f84b183ad5a01031513061c39f');
+
     
-    this.recipeService.getRecipesAPI().subscribe(recipes => {this.allRecipes = recipes});
-    console.log(this.allRecipes);
+  
+    
+    
+    
+    
 
     //apply randomize function to allRecipes and return array of same size as 
     //the number of true values in selectedDays.
@@ -59,13 +69,42 @@ export class WeekviewComponent implements OnInit {
    // this.recipeService.getRecipeAPI('3b05bd629af20456700e1058526a8f43').subscribe(recipe => {
      // console.log(recipe);
     //})
-
-
+    
     //this.buildSelectedDays()
+    this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
     if (this.selectedDays.length === 0) {
-      //this.warn();
+      this.warn();
+    } else if (this.recipeService.getStoredRecipes().length === 0) {
+      this.recipeService.getRecipesAPI().subscribe( recipes => {
+        this.allRecipes = recipes
+        let newDays = [];
+        let index = 0;
+        this.selectedDays.forEach(day =>
+          {if (day.selected === true) {
+            let recipeId = Math.floor(Math.random() * this.allRecipes.length);
+            console.log(this.allRecipes[recipeId]);
+            this.recipeService.addRecipe(this.allRecipes[recipeId]);
+            newDays.push({...day, recipeId: index, recipeName: this.recipeService.getStoredRecipes()[index].title});
+            index++
+          }}
+        )
+        this.selectedDays = newDays;
+        console.log(this.recipeService.getStoredRecipes())
+      });
+    } else {
+      console.log(this.recipeService.getStoredRecipes())
+      let newDays = [];
+      let index = 0;
+      this.selectedDays.forEach(day =>
+        {if (day.selected === true) {
+          newDays.push({...day, recipeId: index, recipeName: this.recipeService.getStoredRecipes()[index].title});
+          index++
+        }}
+      )
+    this.selectedDays = newDays;
     }
     console.log(this.selectedDays);
+    
   }
 
 
@@ -84,15 +123,21 @@ export class WeekviewComponent implements OnInit {
 
   buildSelectedDays() {
     let newDays = [];
+    let index = 0;
     this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
     this.selectedDays.forEach(day =>
       {if (day.selected === true) {
         let recipeId = Math.floor(Math.random() * this.allRecipes.length);
+        console.log(this.allRecipes[recipeId]);
         this.recipeService.addRecipe(this.allRecipes[recipeId]);
-        newDays.push({...day, recipeId: recipeId, recipeName: this.recipeService.getStoredRecipes()[recipeId].title});
+        newDays.push({...day, recipeId: index, recipeName: this.recipeService.getStoredRecipes()[index].title});
+        index++
       }}
     )
     this.selectedDays = newDays;
+  }
+  getAllrecepies() {
+    
   }
 
 }
