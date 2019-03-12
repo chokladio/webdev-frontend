@@ -4,10 +4,12 @@ import { RecipeService } from '../recipe.service';
 import { Day } from '../day';
 import { Recipe } from '../recipe';
 import { RecipesComponent } from '../recipes/recipes.component';
-import { AlertBoxComponent } from '../dashboard/alert-box/alert-box.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { isNullOrUndefined, isUndefined } from 'util';
+import { AlertBoxComponent } from '../dashboard/alert-box/alert-box.component';
+import { WVAlertBoxComponent } from './wv-alert-box/wv-alert-box.component';
 
 
 @Component({
@@ -90,42 +92,6 @@ export class WeekviewComponent implements OnInit {
       });
     }
     console.log(this.selectedDays);
-
-
-
-    /*this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
-    if (this.selectedDays.length === 0) {
-      this.warn();
-    } else if (this.recipeService.getStoredRecipes().length === 0){
-      this.recipeService.getRecipesAPI().subscribe( recipes => {
-        this.allRecipes = recipes
-        let newDays = [];
-        this.selectedDays.forEach(day =>
-          {if (day.selected === true) {
-            let recipeId = Math.floor(Math.random() * this.allRecipes.length);
-            while (this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === this.allRecipes[recipeId].getID()).length !== 0) {
-              recipeId = Math.floor(Math.random() * this.allRecipes.length);
-              console.log(recipeId);
-            }
-            this.recipeService.addRecipe(this.allRecipes[recipeId]);
-            newDays.push({...day, recipeId: this.allRecipes[recipeId].getID(), recipeName: this.allRecipes[recipeId].title});
-          }}
-        )
-        this.selectedDays = newDays;
-        console.log(this.recipeService.getStoredRecipes())
-      });
-    } else {
-      let newDays = [];
-      let index = 0;
-      this.selectedDays.forEach(day =>
-        {if (day.selected === true) {
-          newDays.push({...day, recipeId: this.recipeService.getStoredRecipes()[index].getID(), recipeName: this.recipeService.getStoredRecipes()[index].title});
-          index++;
-        }}
-      )
-      this.selectedDays = newDays;
-    }
-    console.log(this.selectedDays);*/
     
   }
 
@@ -137,7 +103,10 @@ export class WeekviewComponent implements OnInit {
   }
 
   generateNew() {
-    let recipeId = Math.floor(Math.random() * this.allRecipes.length);
+    if (isUndefined(this.selectedDay)) {
+      this.dialog.open(WVAlertBoxComponent);
+    } else {
+      let recipeId = Math.floor(Math.random() * this.allRecipes.length);
     while (this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === this.allRecipes[recipeId].getID()).length !== 0) {
       recipeId = Math.floor(Math.random() * this.allRecipes.length);
       console.log(recipeId);
@@ -146,7 +115,10 @@ export class WeekviewComponent implements OnInit {
     this.recipeService.addRecipe(this.allRecipes[recipeId]);
     let newDay = {...this.selectedDay, recipeId: this.allRecipes[recipeId].getID(), recipeName: this.allRecipes[recipeId].title};
     this.selectedDays[this.selectedDays.indexOf(this.selectedDay)] = newDay
+    this.selectedDay = newDay;
     console.log(this.recipeService.getStoredRecipes());
+    }
+    
   }
 
   buildSelectedDays() {

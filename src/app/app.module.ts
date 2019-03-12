@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import { WeekviewComponent } from './weekview/weekview.component';
 import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
 import { AlertBoxComponent } from './dashboard/alert-box/alert-box.component';
+import { WVAlertBoxComponent } from './weekview/wv-alert-box/wv-alert-box.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AlertBoxComponent } from './dashboard/alert-box/alert-box.component';
     HeaderComponent,
     WeekviewComponent,
     ShoppinglistComponent,
-    AlertBoxComponent
+    AlertBoxComponent,
+    WVAlertBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { AlertBoxComponent } from './dashboard/alert-box/alert-box.component';
   bootstrap: [AppComponent],
   entryComponents: [
     AlertBoxComponent,
+    WVAlertBoxComponent
   ]
 
 })
