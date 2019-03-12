@@ -3,12 +3,7 @@ import { SelectedDaysService } from '../selecteddays.service';
 import { RecipeService } from '../recipe.service';
 import { Day } from '../day';
 import { Recipe } from '../recipe';
-import { RecipesComponent } from '../recipes/recipes.component';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
-import { isNullOrUndefined, isUndefined } from 'util';
-import { AlertBoxComponent } from '../dashboard/alert-box/alert-box.component';
 import { WVAlertBoxComponent } from './wv-alert-box/wv-alert-box.component';
 
 
@@ -24,11 +19,10 @@ export class WeekviewComponent implements OnInit {
   selectedDay: Day;
 
 
-  constructor(private sds:SelectedDaysService, private recipeService: RecipeService,private router: Router, private dialog: MatDialog) { }
+  constructor(private sds:SelectedDaysService, private recipeService: RecipeService, private dialog: MatDialog) { }
 
   warn() {
-    this.dialog.open(AlertBoxComponent);
-    this.router.navigate(['/dashboard'])
+    this.dialog.open(WVAlertBoxComponent);
   }
 
   ngOnInit() {
@@ -83,14 +77,12 @@ export class WeekviewComponent implements OnInit {
         } else {
           let index = 0;
           this.selectedDays.forEach(day =>
-            {if (day.selected === true) {
-              this.recipeService.getStoredRecipes().forEach( (recipe: Recipe) => {
-                if (recipe.day === day.day) {
-                  newDays.push({...day, recipeId: recipe.getID(), recipeName: recipe.title});
-                }
-              })
-            }}
-          )
+            {this.recipeService.getStoredRecipes().forEach( (recipe: Recipe) => {
+              if (recipe.day === day.day) {
+                newDays.push({...day, recipeId: recipe.getID(), recipeName: recipe.title});
+              }
+            })
+          })
         }
         this.selectedDays = newDays;
         console.log(this.recipeService.getStoredRecipes()) 
@@ -108,10 +100,7 @@ export class WeekviewComponent implements OnInit {
   }
 
   generateNew() {
-    if (isUndefined(this.selectedDay)) {
-      this.dialog.open(WVAlertBoxComponent);
-    } else {
-      let recipeId = Math.floor(Math.random() * this.allRecipes.length);
+    let recipeId = Math.floor(Math.random() * this.allRecipes.length);
     while (this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === this.allRecipes[recipeId].getID()).length !== 0) {
       recipeId = Math.floor(Math.random() * this.allRecipes.length);
       console.log(recipeId);
@@ -124,7 +113,7 @@ export class WeekviewComponent implements OnInit {
     this.selectedDays[this.selectedDays.indexOf(this.selectedDay)] = newDay
     this.onSelect(newDay);
     console.log(this.recipeService.getStoredRecipes());
-    }
+    
     
   }
 

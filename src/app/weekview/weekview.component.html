@@ -11,7 +11,7 @@
       </button>
     </mat-drawer>
   
-    <div class="selectedDays" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly left">
+    <div class="selectedDays" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="left">
       <mat-card class="day-card" *ngFor="let day of selectedDays" [class.selected]="day === selectedDay">
         <a (click)="drawer.open()" (click)="onSelect(day)">
           <mat-card-header class="day-card-header">
