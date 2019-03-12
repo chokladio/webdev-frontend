@@ -25,10 +25,10 @@
 
   <div fxFlex fxLayout fxLayoutAlign="start" fxHide.sm fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li><a routerLink="/dashboard">Home</a></li>
-      <li><a routerLink="/weekview">Your week</a></li>
-      <li><a routerLink="/recipes">Recipes</a></li>
-      <li><a routerLink="/shoppinglist">Shopping list</a></li>
+      <nav><a [routerLinkActive]="['active']" routerLink="/dashboard">Home</a></nav>
+      <nav><a [routerLinkActive]="['active']" routerLink="/weekview">Your week</a></nav>
+      <nav><a [routerLinkActive]="['active']" routerLink="/recipes">Recipes</a></nav>
+      <nav><a [routerLinkActive]="['active']" routerLink="/shoppinglist">Shopping list</a></nav>
     </ul>
   </div>
 

@@ -1,22 +1,30 @@
 .fill-remaining-space {
-    /* This fills the remaining space, by using flexbox.
+  /* This fills the remaining space, by using flexbox.
        Every toolbar row uses a flexbox row layout. */
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 // .toolbar-mat {
 //     background-color: steelblue;
 // }
 
-.navigation-items{
+.navigation-items {
   padding-left: 2px;
 }
 
-
-a{
+a {
   text-decoration: none;
-  color:white;
+  color: white;
 }
 
-li{
-  list-style-type: none;
+a:link,
+nav a:visited {
+  color: white;
+}
+
+nav a:hover {
+  color: #ff4081;
+}
+
+.active {
+    color: #ff4081 !important;
 }
