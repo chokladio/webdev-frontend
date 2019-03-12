@@ -17,6 +17,7 @@ import { WeekviewComponent } from './weekview/weekview.component';
 import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
 import { AlertBoxComponent } from './dashboard/alert-box/alert-box.component';
 import { WVAlertBoxComponent } from './weekview/wv-alert-box/wv-alert-box.component';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { WVAlertBoxComponent } from './weekview/wv-alert-box/wv-alert-box.compon
     WeekviewComponent,
     ShoppinglistComponent,
     AlertBoxComponent,
-    WVAlertBoxComponent
+    WVAlertBoxComponent,
+    RecipeCardComponent
   ],
   imports: [
     BrowserModule,

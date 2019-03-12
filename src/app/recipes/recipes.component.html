@@ -13,6 +13,7 @@
   </mat-drawer>
 
   <div class="recipes" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+
     <mat-card class="recipe-card" *ngFor="let recipe of recipes" [class.selected]="recipe === selectedRecipe">
       <a (click)="drawer.open()" (click)="onSelect(recipe)">
         <mat-card-header class="recipe-card-header">
@@ -29,6 +30,9 @@
         </button>
       </mat-card-actions>
     </mat-card>
+
+
+    <app-recipe-card></app-recipe-card>
   </div>
 
 </mat-drawer-container>
