@@ -1,15 +1,16 @@
-<div *ngIf="recipe">
-  <h2>The day's recipe: {{recipe.title | uppercase}}</h2>
-  <div>
-    <label>Portions:
-      <input [(ngModel)]="recipe.portions" placeholder="name">
-    </label>
+<div *ngIf="recipe" class="mat-typography">
+  <div class="header-image">
+    <img src="assets/{{recipe.recipe_id}}.jpg" alt="">
+    <div class="text"><span><h1>{{recipe.title}}</h1></span></div>
   </div>
-  <div class="">
-    Instructions: {{recipe.directions}}
+  <div style="padding:10px;">
+    <h2>Cooking Instructions</h2>
+    <p>{{recipe.directions}}</p>
   </div>
-  <ul>
-    Ingredients: {{recipe.ingredients}}
-  </ul>
-  <button (click)="goBack()">go back</button>
+  <mat-divider></mat-divider>
+  <mat-list>
+    <mat-list-item *ngFor="let ing of recipe.ingredients">
+      {{ing}}
+    </mat-list-item>
+  </mat-list>
 </div>

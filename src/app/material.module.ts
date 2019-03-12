@@ -12,6 +12,8 @@ import {
     MatSelectModule,
     MatInputModule,
     MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
     MatListModule,
     MatSidenavModule,
     MatChipsModule
@@ -30,6 +32,8 @@ imports: [
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
+    MatDividerModule,
+    MatExpansionModule,
     MatListModule,
     MatSidenavModule,
     MatChipsModule
@@ -46,6 +50,8 @@ exports: [
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
+    MatDividerModule,
+    MatExpansionModule,
     MatListModule,
     MatSidenavModule,
     MatChipsModule

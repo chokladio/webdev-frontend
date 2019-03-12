@@ -57,7 +57,7 @@ export class WeekviewComponent implements OnInit {
     
     
 
-    //apply randomize function to allRecipes and return array of same size as 
+    //apply randomize function to allRecipes and return array of same size as
     //the number of true values in selectedDays.
     //then ->
     //recipes.forEach(recipe => this.recipeService.addRecipe(recipe));

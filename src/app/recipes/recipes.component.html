@@ -1,35 +1,34 @@
+<!-- om vi ska pipea sortering sen: https://stackoverflow.com/questions/35158817/angular-2-orderby-pipe -->
+
 <mat-drawer-container class="recipe-container">
   <mat-drawer #drawer position="end" class="recipe-sidenav" mode="side">
-    <p>TESTITEST</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
+    <div style="padding:10px 20px;">
+      <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
+    </div>
+
+    <button mat-fab *ngIf="drawer.opened" (click)="drawer.close()" class="mat-fab-bottom-right">
+      <!-- todo: fadeIn with drawer opening, change to arrow_back_ios then fade out when clicked -->
+      <mat-icon aria-label="Close drawer">arrow_forward_ios</mat-icon>
     </button>
   </mat-drawer>
 
-<div class="recipes">
-  <mat-card class="recipe-card" *ngFor="let recipe of recipes" (click)="drawer.toggle()">
-    <a routerLink="/detail/{{recipe.id}}">
-      <mat-card-header>
-        <mat-card-title>{{recipe.name | uppercase}}</mat-card-title>
-        <mat-card-subtitle>id:{{recipe.id}}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="{{recipe.thumbnail}}" alt="Photo of {{recipe.name}}">
-      <mat-card-content>
-        <p>{{recipe.short_text}}</p>
-        <p>portions: {{recipe.portions}}</p>
-      </mat-card-content>
+  <div class="recipes" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+    <mat-card class="recipe-card" *ngFor="let recipe of recipes" [class.selected]="recipe === selectedRecipe">
+      <a (click)="drawer.open()" (click)="onSelect(recipe)">
+        <mat-card-header>
+          <mat-card-title>
+            {{(recipe.title.length>16)? (recipe.title | slice:0:16)+'..':(recipe.title)}}
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" alt="{{recipe.title}}">
+      </a>
       <mat-card-actions>
-        <button mat-button>change</button>
+        <button mat-icon-button (click)="onFavorite(recipe)">
+          <mat-icon *ngIf="getLocalValue(recipe.recipe_id)=='0'||getLocalValue(recipe.recipe_id)==null" aria-label="Favorite">favorite_border</mat-icon>
+          <mat-icon *ngIf="getLocalValue(recipe.recipe_id)=='1'" aria-label="Favorite" color="accent">favorite</mat-icon>
+        </button>
       </mat-card-actions>
-    </a>
-  </mat-card>
-</div>
-
-  <div class="recipe-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
+    </mat-card>
   </div>
 
 </mat-drawer-container>
