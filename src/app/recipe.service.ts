@@ -27,6 +27,9 @@ export class RecipeService {
     this.recipes = this.recipes.filter((recipe:Recipe) => recipe.recipe_id !== id);
   }
 
+  clearRecipes() {
+    this.recipes = [];
+  }
 
   getRecipesAPI(): Observable<Recipe[]> {
     return this.httpClient.get(`${this.baseUrl}recipes/all`).pipe(
