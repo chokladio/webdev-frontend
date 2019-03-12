@@ -115,7 +115,7 @@ export class WeekviewComponent implements OnInit {
     this.recipeService.addRecipe(this.allRecipes[recipeId]);
     let newDay = {...this.selectedDay, recipeId: this.allRecipes[recipeId].getID(), recipeName: this.allRecipes[recipeId].title};
     this.selectedDays[this.selectedDays.indexOf(this.selectedDay)] = newDay
-    this.selectedDay = newDay;
+    this.onSelect(newDay);
     console.log(this.recipeService.getStoredRecipes());
     }
     
