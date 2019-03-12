@@ -12,6 +12,7 @@ import { RecipeService } from '../recipe.service';
 export class RecipesComponent implements OnInit {
   recipes: Recipe[];
   selectedRecipe: Recipe;
+
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() { //called after creating component, put initialization stuff here
@@ -23,15 +24,7 @@ export class RecipesComponent implements OnInit {
       .subscribe(recipes => this.recipes = recipes);
   }
 
-  onSelect(recipe: Recipe): void {
+  setSelected(recipe: Recipe): void {
     this.selectedRecipe = recipe;
-  }
-
-  onFavorite(recipe: Recipe): void {
-    localStorage.setItem(recipe.recipe_id, this.getLocalValue(recipe.recipe_id) == '1' ? '0' : '1');
-  }
-
-  getLocalValue(key: string): string {
-    return localStorage.getItem(key);
   }
 }

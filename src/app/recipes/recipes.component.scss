@@ -7,56 +7,8 @@ mat-sidenav {
   padding: 20px 10px !important;
 }
 
-.mat-card{
-  padding:13px 0 ;
-}
-
-.mat-card-image {
-  object-fit: cover;
-  overflow: hidden;
-  height: 110px;
-  width:100%;
-  margin:0;
-}
-
-.mat-card-header-text{
-  margin: 0 !important;
-}
-
-.recipe-card-header div{
-  margin:0;
-}
-
-.mat-card-actions button {
-  position: absolute;
-  right: 5px;
-  bottom: 2px;
-}
-
-.recipe-card:hover {
-  //transform:scale(1.03);
-  border-radius: 0;
-}
-
-.recipe-card {
-  width: 220px;
-  margin: 4px 6px;
-  height: 175px;
-
-}
-
-.recipe-container {
-  padding: 20px 20px;
-  height:calc(100% - 64px);
-}
-
 .recipes a:hover {
   color: primary;
-}
-
-.selected {
-  background-color: #90a4ae !important;
-  color: white;
 }
 
 .mat-fab-bottom-right {

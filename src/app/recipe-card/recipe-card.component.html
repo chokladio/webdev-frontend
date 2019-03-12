@@ -1,3 +1,16 @@
-<p>
-  recipe-card works!
-</p>
+<mat-card class="recipe-card" [class.selected]="recipe == selectedRecipe">
+  <a (click)="drawer.open()" (click)="onSelect(recipe)">
+    <mat-card-header class="recipe-card-header">
+      <mat-card-title>
+        {{(recipe.title.length>21)? (recipe.title | slice:0:21)+'..':(recipe.title)}}
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" alt="{{recipe.title}}">
+  </a>
+  <mat-card-actions>
+    <button mat-icon-button (click)="onFavorite(recipe)">
+      <mat-icon *ngIf="getLocalValue(recipe.recipe_id)=='0'||getLocalValue(recipe.recipe_id)==null" aria-label="Favorite">favorite_border</mat-icon>
+      <mat-icon *ngIf="getLocalValue(recipe.recipe_id)=='1'" aria-label="Favorite" color="accent">favorite</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

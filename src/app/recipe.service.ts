@@ -55,21 +55,3 @@ export class RecipeService {
   }
 
 }
-
-/*
-
-export class Recipe {
-  constructor(
-    public recipe_id: number,
-    public title: string,
-    public recipe_url: string,
-    public directions: string,
-    public ingredients: (string | number)[]
-  ) { }
-res.recipe_id,res.title,res.recipe_url,res.directions,res.ingredients
-
-  getID() {
-    return this.recipe_id;
-  }
-}
-*/
