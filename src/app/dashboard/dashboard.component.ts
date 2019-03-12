@@ -51,9 +51,12 @@ export class DashboardComponent implements OnInit {
     });
     this.selectedDaysService.clear();
     this.selectedDaysService.add(formValue);
-    this.saveSomeRecipes();
+    //this.saveSomeRecipes();
+    console.log(this.recipeService.getStoredRecipes());
     //If atleast one box is checked:
     if (formValue.selections.some(day => day.selected)) {
+      this.recipeService.clearRecipes();
+      console.log(this.recipeService.getStoredRecipes());
       this.router.navigate(['/weekview'])
     } else {
       this.warn();
