@@ -1,6 +1,6 @@
 export class Day {
     day: string;
     selected: boolean;
-    recipeId: string;
-    recipeName: string;
+    recipe_id: string;
+    title: string;
   }

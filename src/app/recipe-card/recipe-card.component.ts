@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { Recipe } from '../recipe';
+import { Day } from '../day';
 
 @Component({
   selector: 'app-recipe-card',
@@ -9,10 +10,13 @@ import { Recipe } from '../recipe';
 
 export class RecipeCardComponent implements OnInit {
   @Input() recipe: Recipe;
-  @Input() drawer: Promise;
+  @Input() drawer: Promise<>;
   @Input() selectedRecipe: Recipe;
+  @Input() isWW: Boolean;
 
   @Output() selRec = new EventEmitter<Recipe>();
+  @Output() selDay = new EventEmitter<Day>();
+  @Output() genNew = new EventEmitter<>();
 
   constructor() { }
 
@@ -20,6 +24,10 @@ export class RecipeCardComponent implements OnInit {
 
   onSelect(recipe: Recipe): void {
     this.selRec.emit(recipe);
+  }
+
+  generateNew(){
+    this.genNew.emit();
   }
 
   onFavorite(recipe: Recipe): void {

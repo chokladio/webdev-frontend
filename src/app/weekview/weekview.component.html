@@ -1,34 +1,17 @@
-<h2>My Foodweek!</h2>
 <mat-drawer-container class="weekview-container">
-    <mat-drawer #drawer position="end" class="recipe-sidenav" mode="side">
-      <div style="padding:10px 20px;">
-        <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
-      </div>
-  
-      <button mat-fab *ngIf="drawer.opened" (click)="drawer.close()" class="mat-fab-bottom-right">
-        <!-- todo: fadeIn with drawer opening, change to arrow_back_ios then fade out when clicked -->
-        <mat-icon aria-label="Close drawer">arrow_forward_ios</mat-icon>
-      </button>
-    </mat-drawer>
-  
-    <div class="selectedDays" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly left">
-      <mat-card class="day-card" *ngFor="let day of selectedDays" [class.selected]="day === selectedDay">
-        <a (click)="drawer.open()" (click)="onSelect(day)">
-          <mat-card-header class="day-card-header">
-            <mat-card-title>
-              {{day.day}}
-            </mat-card-title>
-            <mat-card-subtitle>
-              {{day.recipeName}}
-            </mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="assets/{{day.recipeId}}.jpg" alt="{{day.recipeName}}">
-        </a>
-        <mat-card-actions>
-            <button mat-raised-button color="primary" (click)="onSelect(day)" (click)="generateNew(recipe)">Genrate a new Recipe!
-            </button>
-          </mat-card-actions>
-      </mat-card>
+  <mat-drawer #drawer position="end" class="recipe-sidenav" mode="over">
+    <div style="padding:10px 20px;">
+      <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
     </div>
-  
-  </mat-drawer-container>
+
+    <button mat-fab *ngIf="drawer.opened" (click)="drawer.close()" class="mat-fab-bottom-right">
+      <!-- todo:change to arrow_back_ios when fade out when clicked -->
+      <mat-icon aria-label="Close drawer">arrow_forward_ios</mat-icon>
+    </button>
+  </mat-drawer>
+
+  <div class="selectedDays" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly left">
+    <app-recipe-card *ngFor="let day of selectedDays" [isWW]="true" [recipe]="day" [selectedRecipe]="selectedDay" [drawer]="drawer" (selRec)="onSelect($event)" (selDay)='onSelect($event)' (genNew)='generateNew()'></app-recipe-card>
+  </div>
+
+</mat-drawer-container>

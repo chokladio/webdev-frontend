@@ -70,26 +70,25 @@ export class WeekviewComponent implements OnInit {
         let newDays = [];
         if (this.recipeService.getStoredRecipes().length === 0) {
           this.selectedDays.forEach(day => {
-if (day.selected === true) {
-              let recipeId = Math.floor(Math.random() * this.allRecipes.length);
-              while (this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === this.allRecipes[recipeId].getID()).length !== 0) {
-                recipeId = Math.floor(Math.random() * this.allRecipes.length);
-                console.log(recipeId);
+            if (day.selected === true) {
+              let recipe_id = Math.floor(Math.random() * this.allRecipes.length);
+              while (this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === this.allRecipes[recipe_id].getID()).length !== 0) {
+                recipe_id = Math.floor(Math.random() * this.allRecipes.length);
+                console.log(recipe_id);
               }
-              let newRecipe = this.allRecipes[recipeId];
+              let newRecipe = this.allRecipes[recipe_id];
               newRecipe.setDay(day.day);
               this.recipeService.addRecipe(newRecipe);
-              newDays.push({ ...day, recipeId: newRecipe.getID(), recipeName: newRecipe.title });
+              newDays.push({ ...day, recipe_id: newRecipe.getID(), title: newRecipe.title });
             }
-          }
-          )
+          })
         } else {
           let index = 0;
           this.selectedDays.forEach(day => {
             if (day.selected === true) {
               this.recipeService.getStoredRecipes().forEach((recipe: Recipe) => {
                 if (recipe.day === day.day) {
-                  newDays.push({ ...day, recipeId: recipe.getID(), recipeName: recipe.title });
+                  newDays.push({ ...day, recipe_id: recipe.getID(), title: recipe.title });
                 }
               })
             }
@@ -104,7 +103,7 @@ if (day.selected === true) {
   }
 
   onSelect(day: Day): void {
-    let recipe = this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === day.recipeId)[0];
+    let recipe = this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === day.recipe_id)[0];
     this.selectedRecipe = recipe;
     this.selectedDay = day;
   }
@@ -113,16 +112,16 @@ if (day.selected === true) {
     if (isUndefined(this.selectedDay)) {
       this.dialog.open(WVAlertBoxComponent);
     } else {
-      let recipeId = Math.floor(Math.random() * this.allRecipes.length);
-      while (this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === this.allRecipes[recipeId].getID()).length !== 0) {
-        recipeId = Math.floor(Math.random() * this.allRecipes.length);
-        console.log(recipeId);
+      let recipe_id = Math.floor(Math.random() * this.allRecipes.length);
+      while (this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === this.allRecipes[recipe_id].getID()).length !== 0) {
+        recipe_id = Math.floor(Math.random() * this.allRecipes.length);
+        console.log(recipe_id);
       }
-      this.recipeService.removeRecipe(this.selectedDay.recipeId);
-      let newRecipe = this.allRecipes[recipeId];
+      this.recipeService.removeRecipe(this.selectedDay.recipe_id);
+      let newRecipe = this.allRecipes[recipe_id];
       newRecipe.setDay(this.selectedDay.day);
       this.recipeService.addRecipe(newRecipe);
-      let newDay = { ...this.selectedDay, recipeId: newRecipe.getID(), recipeName: newRecipe.title };
+      let newDay = { ...this.selectedDay, recipe_id: newRecipe.getID(), title: newRecipe.title };
       this.selectedDays[this.selectedDays.indexOf(this.selectedDay)] = newDay
       this.onSelect(newDay);
       console.log(this.recipeService.getStoredRecipes());
@@ -135,17 +134,17 @@ if (day.selected === true) {
     this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
     this.selectedDays.forEach(day => {
       if (day.selected === true) {
-        let recipeId = Math.floor(Math.random() * this.allRecipes.length);
-        console.log(this.allRecipes[recipeId]);
-        this.recipeService.addRecipe(this.allRecipes[recipeId]);
-        newDays.push({ ...day, recipeId: index, recipeName: this.recipeService.getStoredRecipes()[index].title });
+        let recipe_id = Math.floor(Math.random() * this.allRecipes.length);
+        console.log(this.allRecipes[recipe_id]);
+        this.recipeService.addRecipe(this.allRecipes[recipe_id]);
+        newDays.push({ ...day, recipe_id: index, title: this.recipeService.getStoredRecipes()[index].title });
         index++
       }
     }
     )
     this.selectedDays = newDays;
   }
-  
+
   getAllrecepies() {
   }
 

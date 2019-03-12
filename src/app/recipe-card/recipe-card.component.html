@@ -8,6 +8,7 @@
     <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" alt="{{recipe.title}}">
   </a>
   <mat-card-actions>
+    <button *ngIf="isWW" mat-button color="warn" (click)="onSelect(recipe)" (click)="generateNew()">I want something different</button>
     <button mat-icon-button (click)="onFavorite(recipe)">
       <mat-icon *ngIf="getLocalValue(recipe.recipe_id)=='0'||getLocalValue(recipe.recipe_id)==null" aria-label="Favorite">favorite_border</mat-icon>
       <mat-icon *ngIf="getLocalValue(recipe.recipe_id)=='1'" aria-label="Favorite" color="accent">favorite</mat-icon>
