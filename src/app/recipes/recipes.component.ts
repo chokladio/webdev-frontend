@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Recipe } from '../recipe';
 import { RecipeService } from '../recipe.service';
 
@@ -12,8 +12,15 @@ import { RecipeService } from '../recipe.service';
 export class RecipesComponent implements OnInit {
   recipes: Recipe[];
   selectedRecipe: Recipe;
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
 
-  constructor(private recipeService: RecipeService) { }
+
+  constructor(private recipeService: RecipeService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 1420px)'); //byt till mode=over när det inte längre får plats dubbla kolumner med recept till vänster om sidenav
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   ngOnInit() { //called after creating component, put initialization stuff here
     this.getRecipes();
@@ -22,6 +29,10 @@ export class RecipesComponent implements OnInit {
   getRecipes(): void {
     this.recipeService.getRecipesAPI()
       .subscribe(recipes => this.recipes = recipes);
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   setSelected(recipe: Recipe): void {
