@@ -1,17 +1,16 @@
-<mat-drawer-container class="weekview-container">
-  <mat-drawer #drawer position="end" class="recipe-sidenav" mode="over">
+<mat-sidenav-container class="weekview-container">
+  <mat-sidenav #drawer position="end" class="recipe-sidenav" mode="over">
     <div style="padding:10px 20px;">
       <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
     </div>
-
-    <button mat-fab *ngIf="drawer.opened" (click)="drawer.close()" class="mat-fab-bottom-right">
-      <!-- todo:change to arrow_back_ios when fade out when clicked -->
-      <mat-icon aria-label="Close drawer">arrow_forward_ios</mat-icon>
-    </button>
-  </mat-drawer>
+  </mat-sidenav>
 
   <div class="selectedDays" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly left">
     <app-recipe-card *ngFor="let day of selectedDays" [isWW]="true" [recipe]="day" [selectedRecipe]="selectedDay" [drawer]="drawer" (selRec)="onSelect($event)" (selDay)='onSelect($event)' (genNew)='generateNew()'></app-recipe-card>
   </div>
 
-</mat-drawer-container>
+</mat-sidenav-container>
+
+<button mat-fab *ngIf="drawer.opened" (click)="drawer.close()" color="accent" class="mat-fab-close">
+  <mat-icon matTooltip="Close" matTooltipPosition='above' aria-label="Close drawer">navigate_next</mat-icon>
+</button>

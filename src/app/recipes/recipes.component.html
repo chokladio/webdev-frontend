@@ -1,6 +1,6 @@
 <!-- om vi ska pipea sortering sen: https://stackoverflow.com/questions/35158817/angular-2-orderby-pipe -->
 <mat-sidenav-container class="recipe-container">
-  <mat-sidenav #drawer position="end" class="recipe-drawer" [fixedInViewport]="mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'">
+  <mat-sidenav #drawer position="end" class="recipe-sidenav" [fixedInViewport]="mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'">
     <div style="padding:10px 20px;">
       <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
     </div>
@@ -12,9 +12,9 @@
 
 </mat-sidenav-container>
 
-<button mat-fab *ngIf="!drawer.opened" (click)="addRecipe()" class="mat-fab-create">
-  <mat-icon aria-label="Add recipe">add</mat-icon>
+<button mat-fab  *ngIf="!drawer.opened" (click)="addRecipe()" class="mat-fab-create">
+  <mat-icon matTooltip="Add a recipe" matTooltipPosition='above' aria-label="Add a recipe">add</mat-icon>
 </button>
-<button mat-fab *ngIf="drawer.opened" (click)="drawer.close()" color="warn" class="mat-fab-close">
-  <mat-icon aria-label="Close drawer">navigate_next</mat-icon>
+<button mat-fab *ngIf="drawer.opened" (click)="drawer.close()" color="accent" class="mat-fab-close">
+  <mat-icon matTooltip="Close" matTooltipPosition='above' aria-label="Close drawer">navigate_next</mat-icon>
 </button>

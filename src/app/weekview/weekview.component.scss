@@ -1,6 +1,5 @@
-mat-drawer,
-mat-sidenav {
-  width: 750px;
+.recipe-sidenav {
+  max-width: 730px;
 }
 
 .mat-drawer-inner-container {
@@ -57,15 +56,15 @@ mat-sidenav {
   color: white;
 }
 
-.mat-fab-bottom-right {
-  top: auto !important;
+.mat-fab-close {
+  z-index: 4;
   right: 20px !important;
   bottom: 12px !important;
-  left: auto !important;
   position: fixed !important;
   animation-name: fadeIn;
-  animation-duration: 1s;
+  animation-duration: 0.4s;
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

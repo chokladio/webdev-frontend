@@ -41,6 +41,6 @@ export class RecipesComponent implements OnInit {
   }
 
   addRecipe() {
-    this.router.navigate(['/dashboard'])
+    this.router.navigate(['/addrecipe'])
   }
 }
