@@ -6,24 +6,23 @@ h1 {
   color: #FF4081;
 }
 
-.mat-list-item{
-  height:32px !important;
+.mat-list-item {
+  height: 32px !important;
 }
 
-.header-image img{
+.header-image img {
   width: 100%;
   object-fit: cover;
   height: 200px;
-  border-radius:3px;
+  border-radius: 3px;
 }
 
-.header-image h1{
+.header-image h1 {
   font-size: 2.5em;
   color: white;
 }
 
-
-.text{
+.text {
   position: absolute;
   top: 10px;
   left: 20px;
@@ -33,13 +32,15 @@ h1 {
   text-align: center;
 }
 
-.text:after{
-    content:'';
-    width:1px; height:100%;
-    vertical-align:middle;
-    display:inline-block;
+.text:after {
+  content: '';
+  width: 1px;
+  height: 100%;
+  vertical-align: middle;
+  display: inline-block;
 }
-.text span{
-    display:inline-block;
-    vertical-align:middle;
+
+.text span {
+  display: inline-block;
+  vertical-align: middle;
 }

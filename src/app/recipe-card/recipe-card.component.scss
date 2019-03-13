@@ -2,26 +2,25 @@
   object-fit: cover;
   overflow: hidden;
   height: 120px;
-  width:100%;
-  margin:0;
+  width: 100%;
+  margin: 0;
 }
 
-.mat-card-actions{
+.mat-card-actions {
   min-height: 35px;
 }
 
-.mat-card-actions .mat-icon-button{
-  float:right;
+.mat-card-actions .mat-icon-button {
+  float: right;
 }
 
-.mat-card-header-text{
+.mat-card-header-text {
   margin: 0 !important;
 }
 
-.recipe-card-header div{
-  margin:0;
+.recipe-card-header div {
+  margin: 0;
 }
-
 
 .recipe-card:hover {
   //transform:scale(1.03);
@@ -33,24 +32,25 @@
   margin: 8px 6px;
 }
 
-.day-card{
-  width:350px;
+.day-card {
+  width: 350px;
 }
 
 .recipe-container {
-  padding: 20px 20px;
-  margin-top:20px;
+  padding: 20px;
+  margin-top: 20px;
 }
 
 .selected {
   background-color: #888 !important;
   color: white;
 }
-
 @media (max-width: 600px) {
   .recipe-card {
     width: 90%;
   }
+
   .mat-card-image {
-    height: 180px;}
+    height: 180px;
+  }
 }

@@ -1,4 +1,4 @@
-.recipe-drawer{
+.recipe-drawer {
   max-width: 730px;
 }
 
@@ -19,9 +19,16 @@
   animation-name: fadeIn;
   animation-duration: 1s;
 }
-
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  15% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
