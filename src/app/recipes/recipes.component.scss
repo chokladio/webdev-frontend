@@ -10,25 +10,20 @@
   color: primary;
 }
 
-.mat-fab-bottom-right {
-  top: auto !important;
+.mat-fab-close, .mat-fab-create {
+  z-index: 4;
   right: 20px !important;
   bottom: 12px !important;
-  left: auto !important;
   position: fixed !important;
-  animation-name: fadeIn;
-  animation-duration: 1s;
+  animation-name: fadeBetweenIcons;
+  animation-duration: 0.4s;
 }
-@keyframes fadeIn {
+
+@keyframes fadeBetweenIcons {
   0% {
-    opacity: 0;
+    transform: rotate(0);
   }
-
-  15% {
-    opacity: 0;
-  }
-
   100% {
-    opacity: 1;
+    transform: rotate(90);
   }
 }
