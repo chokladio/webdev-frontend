@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { Recipe } from '../recipe';
 import { Day } from '../day';
+import { MatDrawer } from '@angular/material';
 
 @Component({
   selector: 'app-recipe-card',
@@ -10,13 +11,13 @@ import { Day } from '../day';
 
 export class RecipeCardComponent implements OnInit {
   @Input() recipe: Recipe;
-  @Input() drawer: Promise<>;
+  @Input() drawer: MatDrawer;
   @Input() selectedRecipe: Recipe;
   @Input() isWW: Boolean;
 
   @Output() selRec = new EventEmitter<Recipe>();
   @Output() selDay = new EventEmitter<Day>();
-  @Output() genNew = new EventEmitter<>();
+  @Output() genNew = new EventEmitter();
 
   constructor() { }
 
@@ -26,7 +27,7 @@ export class RecipeCardComponent implements OnInit {
     this.selRec.emit(recipe);
   }
 
-  generateNew(){
+  generateNew() {
     this.genNew.emit();
   }
 
