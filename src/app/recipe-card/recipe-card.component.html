@@ -1,10 +1,21 @@
 <mat-card class="recipe-card" [ngClass]="{'day-card':isWW}" [class.selected]="recipe == selectedRecipe">
   <a (click)="drawer.open()" (click)="onSelect(recipe)">
-    <mat-card-header class="recipe-card-header">
+
+    <mat-card-header *ngIf="isWW" class="recipe-card-header">
+      <mat-card-title>
+        {{recipe.day}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{recipe.title}}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-header *ngIf="!isWW" class="recipe-card-header">
       <mat-card-title>
         {{(recipe.title.length>21)? (recipe.title | slice:0:21)+'..':(recipe.title)}}
       </mat-card-title>
     </mat-card-header>
+
     <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" alt="{{recipe.title}}">
   </a>
   <mat-card-actions>
