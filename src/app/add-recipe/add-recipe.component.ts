@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Recipe } from '../recipe';
-
+import { RecipeService } from '../recipe.service';
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -14,7 +14,7 @@ export class AddRecipeComponent implements OnInit{
   form: FormGroup;
   ingredientList: FormArray;
 
-  constructor(private fb : FormBuilder){ 
+  constructor(private recipeService : RecipeService, private fb : FormBuilder){ 
   };
 
   createIngredient(): FormGroup {
