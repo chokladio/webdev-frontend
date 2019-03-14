@@ -76,6 +76,15 @@ export class WeekviewComponent implements OnInit {
             let recipe:Recipe = new Recipe(item);
             storedRecipes.push(recipe);
           });
+          storedRecipes.sort((recipe1: Recipe, recipe2: Recipe) => {
+            let day1 = this.checkDay(recipe1.day)
+            let day2 = this.checkDay(recipe2.day)
+            if (day1 > day2) {
+              return 1;
+            } else {
+              return -1;
+            }
+          })
           storedRecipes.forEach((recipe: Recipe) => {
               this.recipeService.addRecipe(recipe);
               newDays.push({ day: recipe.day, selected: true, recipe_id: recipe.recipe_id, title: recipe.title });
@@ -151,6 +160,33 @@ export class WeekviewComponent implements OnInit {
     let week = {weekNumber: this.getWeekNumber().toString(),
       recipes: JSON.stringify(this.recipeService.getStoredRecipes())}
     localStorage.setItem(week.weekNumber, week.recipes)
+  }
+
+  private checkDay(day: string) {
+    switch (day) {
+      case day = 'Monday':
+        return 1;
+
+      case day = 'Tuesday':
+        return 2;
+
+      case day = 'Wednesday':
+        return 3;
+
+      case day = 'Thursday':
+        return 4;
+
+      case day = 'Friday':
+        return 5;
+
+      case day = 'Saturday':
+        return 6;
+      
+      case day = 'Saturday':
+        return 7;
+      default:
+        break;
+    }
   }
 
   getWeek(weekNumber) {
