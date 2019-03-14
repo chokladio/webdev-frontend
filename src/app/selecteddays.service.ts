@@ -7,7 +7,11 @@ export class SelectedDaysService {
   selectedDays = [];
 
   add(formValues) {
-    formValues.selections.map(val => this.selectedDays.push(val));
+    formValues.selections.map(val => {
+      if(val.selected === true) {
+        this.selectedDays.push(val)
+      }
+    });
   }
 
   getSelectedDays() {
