@@ -17,4 +17,6 @@ export class WVAlertBoxComponent implements OnInit {
     this.router.navigate(['/dashboard'])
   }
 
+  
+
 }
