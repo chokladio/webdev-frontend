@@ -60,7 +60,7 @@ export class WeekviewComponent implements OnInit {
     //})
 
     //this.buildSelectedDays()
-    console.log(this.getWeekNumber());
+    
     this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
     if (this.selectedDays.length === 0) {
       //Promise is required, otherwise we try to load a dialog before the view has been initialized.
@@ -148,7 +148,7 @@ export class WeekviewComponent implements OnInit {
     var dayNum = d.getUTCDay() || 7;
     d.setUTCDate(d.getUTCDate() + 4 - dayNum);  
     var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-    return Math.ceil((((d.getUTCMilliseconds() - yearStart.getUTCMilliseconds()) / 86400000) + 1)/7)
+    return Math.ceil((((d.valueOf() - yearStart.valueOf()) / 86400000) + 1)/7)
   }
 
   saveWeek() { 
