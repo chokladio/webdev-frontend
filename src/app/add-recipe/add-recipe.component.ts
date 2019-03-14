@@ -3,6 +3,8 @@ import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Recipe } from '../recipe';
 import { RecipeService } from '../recipe.service';
+import {MatSnackBar} from '@angular/material'
+
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -69,8 +71,11 @@ export class AddRecipeComponent implements OnInit{
       
     }
 
-    return new Recipe(obj);
-    
+    if(this.recipeService.addRecipe(new Recipe(obj))) {
+      //open dialog here.
+    } else {
+      window.alert()
+    }    
   }
 
 }
