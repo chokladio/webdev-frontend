@@ -1,8 +1,8 @@
 .checkbox-form {
   max-width: 1000px;
-  margin: 0 auto;
-  margin-top:10%;
+  margin: 10% auto 0;
 }
+
 .fullscreen-bg {
   position: fixed;
   top: 0;
@@ -22,27 +22,27 @@
   min-width: 100%;
   min-height: 100%;
   -webkit-transform: translate(-50%, -50%);
-     -moz-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .submit-button {
   margin-top: 60px;
 }
 
-.submit-button button{
-    width: 150px;
-    height: 50px;
-    font-size: large;
+.submit-button button {
+  width: 150px;
+  height: 50px;
+  font-size: large;
 }
 
 #aoi {
   display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 3fr));
-      grid-auto-rows: auto;
-      grid-gap: 5px;
-      padding:0 30px;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 3fr));
+  grid-auto-rows: auto;
+  grid-gap: 5px;
+  padding: 0 30px;
 }
 
 #aoi label {
@@ -50,31 +50,31 @@
 }
 
 input:checked+span {
-  box-shadow: inset 0px 0px 2px 1px #fff;
-  color:#444;
-  background-color:white;
+  box-shadow: inset 0 0 2px 1px #fff;
+  color: #444;
+  background-color: white;
 }
 
 input[type="checkbox"] {
   display: none;
 }
 
-.welcome-header{
+.welcome-header {
   color: white;
-  margin-bottom:50px;
+  margin-bottom: 50px;
   text-align: center;
 }
 
 .label-body {
   margin: 0.4rem;
-  padding:45px 5px;
+  padding: 45px 5px;
   border-radius: 5px;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.32);
   color: white;
 }
 
-.label-body:hover{
-  margin-top:0.2rem;
+.label-body:hover {
+  margin-top: 0.2rem;
   border: 2px solid white;
 }
