@@ -73,11 +73,10 @@ export class AddRecipeComponent implements OnInit {
 
     }
 
-    if(this.recipeService.addRecipe(new Recipe(obj))) {
-      this.snackBar.open('Recipe added', '', {duration : 900});
-    } else {
-      this.snackBar.open('Recipe not added, try again :(', '', {duration : 900});
-    }   
+
+    this.recipeService.createNewRecipeAPI(new Recipe(obj)).subscribe(res=> {
+      this.snackBar.open(res,'',{duration:900})
+    })  
 
     return(new Recipe(obj));  }
 }
