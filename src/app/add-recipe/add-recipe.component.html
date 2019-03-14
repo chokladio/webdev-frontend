@@ -1,41 +1,145 @@
-<h3>Lägg till ett recept</h3>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center">
+  <mat-card style="margin-top:70px;">
+    <mat-card-title>
+      Lägg till ett recept
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (submit)=submit();>
 
+        <mat-form-field>
+          <input matInput placeholder="Name of the dish" class="form-control" formControlName="title" type='text' required>
+        </mat-form-field>
 
-<form [formGroup]="form" (submit) = submit();>
+        <mat-form-field>
+          <input matInput placeholder="Instructions" class="form-control" formControlName="instruction" type="text">
+        </mat-form-field>
 
-  <mat-form-field>
-  <input matInput placeholder="Name of the dish" class="form-control" formControlName="title" type='text' required>
-  </mat-form-field>
+        <div formArrayName="ingredients" class="form-group">
 
-  <mat-form-field>
-  <input matInput placeholder="Instructions" class="form-control" formControlName="instruction" type="text">
- </mat-form-field>
+          <div *ngFor="let ingredient of ingredientFormGroup.controls; let i = index;">
+            <div [formGroupName]="i" class="row">
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Ingredients" class="form-control" formControlName="ingredient" type="text">
+                </mat-form-field>
+              </div>
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Amount" class="form-contol" formControlName="amount" type="text">
+                </mat-form-field>
+              </div>
 
- <div formArrayName = "ingredients" class = "form-group">
+              <div class="form-group">
+                <button mat-button class="btn btn-danger" type="button" (click)=removeIngredient()>Remove Ingredient</button>
+              </div>
 
-    <div *ngFor="let ingredient of ingredientFormGroup.controls; let i = index;" >
-        <div [formGroupName]="i" class="row">
-          <div class = "form-group"><mat-form-field>
-            <input matInput placeholder="Ingredients" class="form-control" formControlName="ingredient" type="text">
-          </mat-form-field> 
-          </div>
-          <div class= "form-group">
-            <mat-form-field>
-            <input matInput placeholder="Amount" class= "form-contol" formControlName="amount" type="text">  
-          </mat-form-field>
-          </div>
+            </div>
 
-          <div class = "form-group">
-            <button mat-button class = "btn btn-danger" type="button" (click)=removeIngredient()>Remove Ingredient</button>
           </div>
 
         </div>
 
-      </div>
+        <button mat-button class="btn" type="button" (click)=addIngredient()>Add ingredient</button>
+        <button mat-button class="btn" type="button" (click)=onSubmit()>Save recipe</button>
 
-    </div> 
+      </form>
 
-    <button mat-button class="btn" type="button" (click)= addIngredient()>Add ingredient</button>
-    <button mat-button class="btn" type="button" (click) = onSubmit()>Save recipe</button>
 
-</form>
+
+      <!-- <mat-card-content>
+    <form [formGroup]="regiForm" (ngSubmit)="onFormSubmit(regiForm.value)">
+      <table>
+        <tr>
+          <td>
+            <mat-form-field class="demo-full-width">
+              <input formControlName="FirstName" matInput placeholder="First Name">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!regiForm.get('FirstName').valid && regiForm.get('FirstName').touched">Please enter First Name !!!</span>
+            </mat-error>
+          </td>
+          <td>
+            <mat-form-field class="demo-full-width">
+              <input formControlName="LastName" matInput placeholder="Last Name">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!regiForm.get('LastName').valid && regiForm.get('LastName').touched">Please enter Last Name !!!</span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field class="demo-full-width">
+              <textarea formControlName="Address" matInput placeholder="Address" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!regiForm.get('Address').valid && regiForm.get('Address').touched">Please enter proper address !!!</span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field class="demo-full-width">
+              <input formControlName="DOB" matInput [matDatepicker]="picker" placeholder="Date of birth">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi="true" #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!regiForm.get('DOB').valid && regiForm.get('DOB').touched">Please select any Date !!!</span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>Gender</span><br><br>
+            <mat-radio-group formControlName="Gender">
+              <mat-radio-button value="Male">Male</mat-radio-button>
+              <mat-radio-button value="Female">Female</mat-radio-button>
+            </mat-radio-group>
+            <mat-error>
+              <span *ngIf="!regiForm.get('Gender').valid && regiForm.get('Gender').touched">Please select any gender !!!</span>
+            </mat-error>
+          </td>
+          <td><br>
+            <mat-form-field>
+              <mat-select formControlName="Blog" placeholder="Select Blog">
+                <mat-option>-- Select Any --</mat-option>
+                <mat-option value="C#Corner">C#Corner</mat-option>
+                <mat-option value="C#Corner">C#Corner</mat-option>
+                <mat-option value="C#Corner">C#Corner</mat-option>
+              </mat-select>
+              <mat-error>
+                <span *ngIf="!regiForm.get('Blog').valid && regiForm.get('Blog').touched">Please select any item !!!</span>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field class="demo-full-width">
+              <input formControlName="Email" matInput placeholder="Email">
+              <mat-hint>use like : demo@demo.com</mat-hint>
+              <mat-error>
+                <span *ngIf="!regiForm.get('Email').valid && regiForm.get('Email').touched">Enter proper Email !!!</span>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-slide-toggle formControlName="IsAccepted" (change)="onChange($event)">Accept Terms & Conditions</mat-slide-toggle>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="content-center">
+            <button mat-raised-button color="accent" [disabled]="!regiForm.valid || IsAccepted==0">Submit</button>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+      </table>
+    </form> -->
+    </mat-card-content>
+  </mat-card>
+</div>
