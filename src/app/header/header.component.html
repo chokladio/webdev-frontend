@@ -16,6 +16,10 @@
         <mat-icon>local_dining</mat-icon>
         <span>Recipes</span>
       </button>
+      <button mat-menu-item routerLink="/addrecipe">
+        <mat-icon>add</mat-icon>
+        <span>Add Recipe</span>
+      </button>
       <button mat-menu-item routerLink="/shoppinglist">
         <mat-icon>shopping_basket</mat-icon>
         <span>Shopping list</span>
@@ -28,6 +32,7 @@
       <nav><button mat-button color="white" [routerLinkActive]="['active']" routerLink="/dashboard">Home</button></nav>
       <nav><button mat-button color="white" [routerLinkActive]="['active']" routerLink="/weekview">Your week</button></nav>
       <nav><button mat-button color="white" [routerLinkActive]="['active']" routerLink="/recipes">Recipes</button></nav>
+      <nav><button mat-button color="white" [routerLinkActive]="['active']" routerLink="/addrecipe">Add Recipe</button></nav>
       <nav><button mat-button color="white" [routerLinkActive]="['active']" routerLink="/shoppinglist">Shopping list</button></nav>
     </ul>
   </div>
