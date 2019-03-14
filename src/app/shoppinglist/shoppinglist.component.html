@@ -1,5 +1,4 @@
 <h3>Your shopping list</h3>
-
 <mat-selection-list #sorted>
   <mat-list-option *ngFor="let entry of clearedIngredients | keyvalue ">
     <div *ngIf="entry.value && entry.value[0] !=='' && entry.value[1] !==''">
@@ -20,8 +19,8 @@
 </mat-selection-list>
 
 
-<h3>Ingredients per recipe</h3>
 <mat-selection-list #ingredients>
+  <h3>Ingredients per recipe</h3>
   <div *ngFor="let recipe of recipes ; let i=index;">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
