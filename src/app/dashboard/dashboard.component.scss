@@ -4,16 +4,6 @@
   margin: 0 auto;
 }
 
-.mat-checkbox-layout {
-  width: 150px;
-  // display: inline-block;
-  text-align: center;
-  padding: 8px 4px;
-  margin: 4px 0;
-  border: 1px solid #333;
-  border-radius: 8px;
-}
-
 .submit-button {
   margin-top: 3%;
 }
@@ -26,4 +16,29 @@ h2 {
 h3 {
   margin-top: 3%;
   text-align: center;
+}
+
+input:checked+span {
+  background-color: var(--base-color);
+  color: white;
+  box-shadow: inset 1px 1px 1px 0 black;
+}
+
+.unsub input:checked+span {
+  background-color: red;
+  color: white;
+  box-shadow: inset 1px 1px 1px 0 black;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+label > .label-body {
+  margin: 0.4rem;
+  padding: 60px 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  width:200px;
 }
