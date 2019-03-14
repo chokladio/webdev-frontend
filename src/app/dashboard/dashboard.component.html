@@ -4,15 +4,17 @@
   </video>
 </div>
 
-<h2 color="primary">Welcome</h2>
-<h3>Check the boxes for the days you want recipes!</h3>
+<div class="welcome-header">
+<h1>Welcome</h1>
+<h2>Check the boxes for the days you want recipes!</h2>
+</div>
 
 <div class="checkbox-form" [formGroup]="form">
   <div id="aoi" style="max-width:1000px">
     <div *ngFor="let day of days.controls; let i = index">
       <label>
         <input type="checkbox" [formControl]="day">
-        <span class="label-body">{{selections.days[i].day}}</span>
+        <span class="label-body" color="primary">{{selections.days[i].day}}</span>
       </label>
     </div>
   </div>
