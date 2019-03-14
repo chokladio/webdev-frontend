@@ -72,10 +72,10 @@ export class AddRecipeComponent implements OnInit {
 
     }
 
-    if(this.recipeService.addRecipe(new Recipe(obj))) {
+    /*if(this.recipeService.addRecipe(new Recipe(obj))) {
       //open dialog here.
     } else {
       window.alert()
-    }    
+    }  */  
   }
 }

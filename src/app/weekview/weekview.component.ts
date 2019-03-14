@@ -60,6 +60,7 @@ export class WeekviewComponent implements OnInit {
     //})
 
     //this.buildSelectedDays()
+    
     this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
     if (this.selectedDays.length === 0) {
       //Promise is required, otherwise we try to load a dialog before the view has been initialized.
@@ -140,7 +141,26 @@ export class WeekviewComponent implements OnInit {
     this.selectedDays = newDays;
   }
 
-  getAllrecepies() {
+
+
+  private getWeekNumber() {
+    let d = new Date();
+    var dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);  
+    var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+    return Math.ceil((((d.valueOf() - yearStart.valueOf()) / 86400000) + 1)/7)
   }
+
+  saveWeek() { 
+    let week = {weekNumber: this.getWeekNumber().toString(),
+      days: JSON.stringify(this.selectedDays)}
+    localStorage.setItem(week.weekNumber, week.days)
+  }
+
+  getWeek(weekNumber) {
+    let JSONweek = localStorage.getItem(weekNumber);
+    let week = JSON.parse(JSONweek);
+    this.selectedDays = week;
+  } 
 
 }
