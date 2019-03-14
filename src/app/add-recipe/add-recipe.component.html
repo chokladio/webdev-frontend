@@ -13,7 +13,7 @@
 
  <div formArrayName = "ingredients" class = "form-group">
 
-    <div *ngFor="let ingredient of ingredientFormGroup.controls; let i = index;">
+    <div *ngFor="let ingredient of ingredientFormGroup.controls; let i = index;" >
         <div [formGroupName]="i" class="row">
           <div class = "form-group"><mat-form-field>
             <input matInput placeholder="Ingredients" class="form-control" formControlName="ingredient" type="text">

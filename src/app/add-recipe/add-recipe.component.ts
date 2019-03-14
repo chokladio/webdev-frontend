@@ -56,17 +56,19 @@ export class AddRecipeComponent implements OnInit{
     var ingredientsArr = [];
     
     for(var i = 0; i < this.form.value.ingredients.length; i++){
-      ingredientsArr.push({ingredient: this.form.value.ingredients[i].ingredient , amount: this.form.value.ingredients[i].amount})
+      ingredientsArr.push( this.form.value.ingredients[i].ingredient +  this.form.value.ingredients[i].amount)
     }
 
     const obj = {
       title: this.form.get('title').value,
-      instruction: this.form.get('instruction').value,
-      ingredients: ingredientsArr
+      directions: this.form.get('instruction').value,
+      ingredients: ingredientsArr,
+      //ID + day + url todo
+      
     }
 
     return new Recipe(obj);
-    //const recipe = new Recipe();
+    
   }
 
 }
