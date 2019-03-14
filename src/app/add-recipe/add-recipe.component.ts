@@ -70,7 +70,6 @@ export class AddRecipeComponent implements OnInit {
 
     }
 
-    }
     console.log(new Recipe(obj));
     return new Recipe(obj);
   }
