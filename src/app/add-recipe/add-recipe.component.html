@@ -1,0 +1,41 @@
+<h3>Lägg till ett recept</h3>
+
+
+<form [formGroup]="form" (submit) = submit();>
+
+  <mat-form-field>
+  <input matInput placeholder="Maträttens namn" class="form-control" formControlName="title" type='text' required>
+  </mat-form-field>
+
+  <mat-form-field>
+  <input matInput placeholder="Instruktioner" class="form-control" formControlName="instruction" type="text">
+ </mat-form-field>
+
+ <div formArrayName = "ingredients" class = "form-group">
+
+    <div *ngFor="let ingredient of ingredientFormGroup.controls; let i = index;">
+        <div [formGroupName]="i" class="row">
+          <div class = "form-group"><mat-form-field>
+            <input matInput placeholder="Ingrediens" class="form-control" formControlName="ingredient" type="text">
+          </mat-form-field> 
+          </div>
+          <div class= "form-group">
+            <mat-form-field>
+            <input matInput placeholder="Mängd" class= "form-contol" formControlName="amount" type="text">  
+          </mat-form-field>
+          </div>
+
+          <div class = "form-group">
+            <button mat-button class = "btn btn-danger" type="button" (click)=removeIngredient()>Ta bort ingrediens</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div> 
+
+    <button mat-button class="btn" type="button" (click)= addIngredient()>Lägg till ingrediens</button>
+    <button mat-button class="btn" type="button" (click) = onSubmit()>Spara recept</button>
+
+</form>

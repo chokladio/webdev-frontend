@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
@@ -31,7 +32,8 @@ import { RecipeCardComponent } from './recipe-card/recipe-card.component';
     ShoppinglistComponent,
     AlertBoxComponent,
     WVAlertBoxComponent,
-    RecipeCardComponent
+    RecipeCardComponent,
+    AddRecipeComponent
   ],
   imports: [
     BrowserModule,
