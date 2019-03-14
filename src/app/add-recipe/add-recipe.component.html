@@ -14,13 +14,13 @@
           <input matInput placeholder="Instructions" class="form-control" formControlName="instruction" type="text">
         </mat-form-field>
 
-        <div formArrayName="ingredients" class="form-group">
+        <div formArrayName="ingredients">
           <div *ngFor="let ingredient of ingredientFormGroup.controls; let i = index;">
             <div [formGroupName]="i" class="row">
-              <mat-form-field class="form-group">
+              <mat-form-field>
                 <input matInput placeholder="Ingredients" class="form-control" formControlName="ingredient" type="text">
               </mat-form-field>
-              <mat-form-field class="form-group">
+              <mat-form-field>
                 <input matInput placeholder="Amount" class="form-contol" formControlName="amount" type="text">
               </mat-form-field>
               <button mat-icon-button class="btn" (click)=addIngredient()>
