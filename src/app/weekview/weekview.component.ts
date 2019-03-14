@@ -24,7 +24,7 @@ export class WeekviewComponent implements OnInit {
   selectedRecipe: Recipe;
   allRecipes: Recipe[] = [];
   selectedDay: Day;
-
+  loaded:false;
 
   constructor(private sds: SelectedDaysService, private recipeService: RecipeService, private router: Router, private dialog: MatDialog) { }
 
@@ -60,7 +60,7 @@ export class WeekviewComponent implements OnInit {
     //})
 
     //this.buildSelectedDays()
-    
+
     this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
     if (this.selectedDays.length === 0) {
       //Promise is required, otherwise we try to load a dialog before the view has been initialized.
@@ -100,6 +100,7 @@ export class WeekviewComponent implements OnInit {
       });
     }
     console.log(this.selectedDays);
+    this.loaded = true;
   }
 
   onSelect(day: Day): void {
@@ -146,12 +147,12 @@ export class WeekviewComponent implements OnInit {
   private getWeekNumber() {
     let d = new Date();
     var dayNum = d.getUTCDay() || 7;
-    d.setUTCDate(d.getUTCDate() + 4 - dayNum);  
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
     var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
     return Math.ceil((((d.valueOf() - yearStart.valueOf()) / 86400000) + 1)/7)
   }
 
-  saveWeek() { 
+  saveWeek() {
     let week = {weekNumber: this.getWeekNumber().toString(),
       days: JSON.stringify(this.selectedDays)}
     localStorage.setItem(week.weekNumber, week.days)
@@ -161,6 +162,6 @@ export class WeekviewComponent implements OnInit {
     let JSONweek = localStorage.getItem(weekNumber);
     let week = JSON.parse(JSONweek);
     this.selectedDays = week;
-  } 
+  }
 
 }
