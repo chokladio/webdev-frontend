@@ -78,12 +78,8 @@ export class AddRecipeComponent implements OnInit {
     } else {
       this.snackBar.open('Recipe not added, try again :(', '', {duration : 900});
     }   
-    
-    
-    
 
-    return(new Recipe(obj));
-  }
+    return(new Recipe(obj));  }
 }
 
 

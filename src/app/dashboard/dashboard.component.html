@@ -1,15 +1,17 @@
 <h2>Welcome</h2>
 <h3>Check the boxes for the days you want recipes!</h3>
 
-<form class="checkbox-form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+<div class="checkbox-form" [formGroup]="form" >
   <div style="max-width:1000px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
-    <div *ngFor="let day of days.controls; let i = index">
-      <mat-checkbox [formControl]="day">
-        {{selections.days[i].day}}
-      </mat-checkbox>
+    <div id="aoi" *ngFor="let day of days.controls; let i = index">
+      <label>
+        <input type="checkbox" [formControl]="day">
+        <span class="label-body">{{selections.days[i].day}}</span>
+      </label>
     </div>
   </div>
   <div class="submit-button" fxLayoutAlign="center">
-    <button mat-raised-button color="primary" type="submit">Generate!</button>
+    <button mat-raised-button color="primary" (click)="onSubmit(form.value)">Generate!</button>
   </div>
-</form>
+
+</div>
