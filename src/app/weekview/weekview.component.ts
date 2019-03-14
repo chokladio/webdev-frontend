@@ -29,7 +29,10 @@ export class WeekviewComponent implements OnInit {
   constructor(private sds: SelectedDaysService, private recipeService: RecipeService, private router: Router, private dialog: MatDialog) { }
 
   warn() {
-    this.dialog.open(WVAlertBoxComponent);
+    let dialogRef = this.dialog.open(WVAlertBoxComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.router.navigate(['/dashboard']); 
+    });
   }
 
   ngOnInit() {
@@ -76,7 +79,6 @@ export class WeekviewComponent implements OnInit {
               let recipe_id = Math.floor(Math.random() * this.allRecipes.length);
               while (this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === this.allRecipes[recipe_id].getID()).length !== 0) {
                 recipe_id = Math.floor(Math.random() * this.allRecipes.length);
-                console.log(recipe_id);
               }
               let newRecipe = this.allRecipes[recipe_id];
               newRecipe.setDay(day.day);
@@ -85,21 +87,17 @@ export class WeekviewComponent implements OnInit {
             }
           })
         } else {
-          let index = 0;
-
           this.selectedDays.forEach(day => {
-              this.recipeService.getStoredRecipes().forEach((recipe: Recipe) => {
-                if (recipe.day === day.day) {
-                  newDays.push({ ...day, recipe_id: recipe.getID(), title: recipe.title });
-                }
-              })
+            this.recipeService.getStoredRecipes().forEach((recipe: Recipe) => {
+              if (recipe.day === day.day) {
+                newDays.push({ ...day, recipe_id: recipe.getID(), title: recipe.title });
+              }
+            })
           })
         }
         this.selectedDays = newDays;
-        console.log(this.recipeService.getStoredRecipes())
       });
     }
-    console.log(this.selectedDays);
   }
 
   onSelect(day: Day): void {
@@ -112,7 +110,6 @@ export class WeekviewComponent implements OnInit {
       let recipe_id = Math.floor(Math.random() * this.allRecipes.length);
       while (this.recipeService.getStoredRecipes().filter((recipe: Recipe) => recipe.recipe_id === this.allRecipes[recipe_id].getID()).length !== 0) {
         recipe_id = Math.floor(Math.random() * this.allRecipes.length);
-        console.log(recipe_id);
       }
       this.recipeService.removeRecipe(this.selectedDay.recipe_id);
       let newRecipe = this.allRecipes[recipe_id];
@@ -121,26 +118,7 @@ export class WeekviewComponent implements OnInit {
       let newDay = { ...this.selectedDay, recipe_id: newRecipe.getID(), title: newRecipe.title };
       this.selectedDays[this.selectedDays.indexOf(this.selectedDay)] = newDay
       this.onSelect(newDay);
-      console.log(this.recipeService.getStoredRecipes());
     }
-
-  buildSelectedDays() {
-    let newDays = [];
-    let index = 0;
-    this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
-    this.selectedDays.forEach(day => {
-      if (day.selected === true) {
-        let recipe_id = Math.floor(Math.random() * this.allRecipes.length);
-        console.log(this.allRecipes[recipe_id]);
-        this.recipeService.addRecipe(this.allRecipes[recipe_id]);
-        newDays.push({ ...day, recipe_id: index, title: this.recipeService.getStoredRecipes()[index].title });
-        index++
-      }
-    }
-    )
-    this.selectedDays = newDays;
-  }
-
 
 
   private getWeekNumber() {
@@ -153,14 +131,30 @@ export class WeekviewComponent implements OnInit {
 
   saveWeek() { 
     let week = {weekNumber: this.getWeekNumber().toString(),
-      days: JSON.stringify(this.selectedDays)}
-    localStorage.setItem(week.weekNumber, week.days)
+      recipes: JSON.stringify(this.recipeService.getStoredRecipes())}
+    localStorage.setItem(week.weekNumber, week.recipes)
   }
 
   getWeek(weekNumber) {
-    let JSONweek = localStorage.getItem(weekNumber);
-    let week = JSON.parse(JSONweek);
-    this.selectedDays = week;
+    let newDays: Day[] = [];
+    let recipesAny: any[] = JSON.parse(localStorage.getItem(weekNumber));
+    let recipes: Recipe[] = [];
+    recipesAny.forEach(item => {
+      let recipe:Recipe = new Recipe(item);
+      recipes.push(recipe);
+    });
+    console.log(recipes);
+    this.recipeService.clearRecipes();
+    this.selectedDays.forEach(day => {
+      recipes.forEach((recipe: Recipe) => {
+        if (recipe.day === day.day) {
+          this.recipeService.addRecipe(recipe);
+          newDays.push({ ...day, recipe_id: recipe.recipe_id, title: recipe.title });
+        }
+      })
+    })
+    this.selectedDays = newDays;
+    console.log(this.selectedDays);
   } 
 
 }
