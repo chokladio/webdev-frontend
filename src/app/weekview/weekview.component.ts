@@ -100,7 +100,6 @@ export class WeekviewComponent implements OnInit {
       });
     }
     console.log(this.selectedDays);
-    this.loaded = true;
   }
 
   onSelect(day: Day): void {
