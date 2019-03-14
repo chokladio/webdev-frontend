@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MyMaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,7 +44,9 @@ import { RecipeCardComponent } from './recipe-card/recipe-card.component';
     BrowserAnimationsModule,
     MyMaterialModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

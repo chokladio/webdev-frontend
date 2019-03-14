@@ -3,7 +3,8 @@ import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Recipe } from '../recipe';
 import { RecipeService } from '../recipe.service';
-import {MatSnackBar} from '@angular/material'
+import { MatSnackBar, MatSnackBarModule } from '@angular/material';
+
 
 @Component({
   selector: 'app-add-recipe',
@@ -16,7 +17,7 @@ export class AddRecipeComponent implements OnInit {
   form: FormGroup;
   ingredientList: FormArray;
 
-  constructor(private recipeService : RecipeService, private fb : FormBuilder){
+  constructor(private recipeService : RecipeService, private fb : FormBuilder, private snackBar: MatSnackBar){
   };
 
   createIngredient(): FormGroup {
@@ -73,9 +74,16 @@ export class AddRecipeComponent implements OnInit {
     }
 
     if(this.recipeService.addRecipe(new Recipe(obj))) {
-      //open dialog here.
+      this.snackBar.open('Recipe added', '', {duration : 900});
     } else {
-      window.alert()
-    }    
+      this.snackBar.open('Recipe not added, try again :(', '', {duration : 900});
+    }   
+    
+    
+    
+
+    return(new Recipe(obj));
   }
 }
+
+
