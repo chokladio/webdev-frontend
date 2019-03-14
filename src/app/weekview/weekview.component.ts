@@ -24,7 +24,7 @@ export class WeekviewComponent implements OnInit {
   selectedRecipe: Recipe;
   allRecipes: Recipe[] = [];
   selectedDay: Day;
-  loaded:false;
+
 
   constructor(private sds: SelectedDaysService, private recipeService: RecipeService, private router: Router, private dialog: MatDialog) { }
 

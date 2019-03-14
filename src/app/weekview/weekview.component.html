@@ -6,10 +6,10 @@
   </mat-sidenav>
 
   <div class="selectedDays" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly left">
-    <app-recipe-card ngIf="loaded" *ngFor="let day of selectedDays" [isWW]="true" [recipe]="day" [selectedRecipe]="selectedDay" [drawer]="drawer" (selRec)="onSelect($event)" (selDay)='onSelect($event)' (genNew)='generateNew()'></app-recipe-card>
+    <app-recipe-card *ngFor="let day of selectedDays" [isWW]="true" [recipe]="day" [selectedRecipe]="selectedDay" [drawer]="drawer" (selRec)="onSelect($event)" (selDay)='onSelect($event)' (genNew)='generateNew()'></app-recipe-card>
   </div>
 
-  <div class="saveButton" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+  <div class="saveButton" fxLayout="row wrap" fxLayoutAlign="center">
     <button mat-raised-button color="primary" (click)="saveWeek()">Save your FoodWeek!</button>
     <button mat-raised-button color="primary" (click)="getWeek(11)">Revert your FoodWeek!</button>
   </div>
