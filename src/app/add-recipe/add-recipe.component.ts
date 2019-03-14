@@ -63,7 +63,9 @@ export class AddRecipeComponent implements OnInit{
       title: this.form.get('title').value,
       directions: this.form.get('instruction').value,
       ingredients: ingredientsArr,
-      //ID + day + url todo
+      recipe_id: '',
+      day: '',
+      recipe_url: ''
       
     }
 
