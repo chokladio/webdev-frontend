@@ -1,4 +1,4 @@
-<div *ngIf="recipe" class="mat-typography">
+<div *ngIf="recipe && recipe.recipe_id" class="mat-typography">
   <div class="header-image">
     <img src="assets/{{recipe.recipe_id}}.jpg" alt="">
     <div class="text"><span><h1>{{recipe.title}}</h1></span></div>

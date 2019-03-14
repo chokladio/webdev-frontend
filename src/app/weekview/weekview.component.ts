@@ -62,7 +62,9 @@ export class WeekviewComponent implements OnInit {
     //this.buildSelectedDays()
     this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
     if (this.selectedDays.length === 0) {
-      this.warn();
+      //Promise is required, otherwise we try to load a dialog before the view has been initialized.
+      //In the future, consider placing alert window in ngAfterViewInit instead.
+      Promise.resolve().then(() => this.warn());
     } else {
       this.recipeService.getRecipesAPI().subscribe(recipes => {
         this.allRecipes = recipes
