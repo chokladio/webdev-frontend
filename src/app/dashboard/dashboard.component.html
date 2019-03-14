@@ -1,9 +1,9 @@
-<h2>Welcome</h2>
+<h2 color="primary">Welcome</h2>
 <h3>Check the boxes for the days you want recipes!</h3>
 
 <div class="checkbox-form" [formGroup]="form" >
-  <div style="max-width:1000px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
-    <div id="aoi" *ngFor="let day of days.controls; let i = index">
+  <div id="aoi"  style="max-width:1000px">
+    <div *ngFor="let day of days.controls; let i = index">
       <label>
         <input type="checkbox" [formControl]="day">
         <span class="label-body">{{selections.days[i].day}}</span>
