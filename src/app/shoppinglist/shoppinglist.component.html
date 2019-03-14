@@ -1,24 +1,35 @@
 <h3>Your shopping list</h3>
 
-<button mat-button (click)="apiCreateTest()">Apicreate</button>
-
 <mat-selection-list #sorted>
   <mat-list-option *ngFor="let entry of clearedIngredients | keyvalue ">
-    {{entry.value}} {{entry.key}}
+    <div *ngIf="entry.value && entry.value[0] !=='' && entry.value[1] !==''">
+      {{entry.value[0] | number:'1.0-3'}} {{' '+entry.value[1]}} {{' '+entry.key}}
+    </div>
+    <div *ngIf="entry.value && entry.value[0] !=='' && entry.value[1] === ''">
+      {{entry.value[0] | number:'1.0-3'}} {{' '+entry.key}}
+    </div>
+    <div *ngIf="entry.value && entry.value[0] ==='' && entry.value[1] !== ''">
+      {{entry.value[1]}} {{' '+entry.key}}
+    </div>
+  </mat-list-option>
+  <mat-list-option *ngFor="let item of extraIngredients">
+    <div *ngIf="item && item[0] && item[1] && item[2]">
+      {{item[0]+' '}}{{item[1]+ ' '}}{{item[2]}}
+    </div>
   </mat-list-option>
 </mat-selection-list>
 
 
-
+<h3>Ingredients per recipe</h3>
 <mat-selection-list #ingredients>
   <div *ngFor="let recipe of recipes ; let i=index;">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         {{recipe.title}}
       </mat-expansion-panel-header>
-        <mat-list-option *ngFor="let ingredient of recipe.ingredients">
-          {{ingredient}}
-        </mat-list-option>
+      <mat-list-option *ngFor="let ingredient of recipe.ingredients">
+        {{ingredient}}
+      </mat-list-option>
     </mat-expansion-panel>
   </div>
 </mat-selection-list>

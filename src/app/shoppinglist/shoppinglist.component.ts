@@ -11,16 +11,16 @@ export class ShoppinglistComponent implements OnInit {
   private recipes: Recipe[];
   private allIngredients = [];
   private clearedIngredients;
+  private extraIngredients;
 
 
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
     this.recipes = this.recipeService.getStoredRecipes()
-    console.log(this.recipes);
     this.processData();
   }
-
+  /*
   apiCreateTest() {
     if (this.recipes !== undefined || this.recipes.length !== 0) {
       this.recipeService.createNewRecipeAPI(this.recipes[0]).subscribe(res =>
@@ -28,6 +28,7 @@ export class ShoppinglistComponent implements OnInit {
       );
     }
   }
+  */
   /*Processing the ingredients data to separate units and amount and clean up data. Not perfect. We should've done this in the backend, when scraping recipes, but i wanted to include it 
     here to see how the data can be processed.
   */
@@ -98,25 +99,55 @@ export class ShoppinglistComponent implements OnInit {
       name:[unit,amount]
     }
     */
-    console.log(amount);
-    console.log(units);
-    console.log(copy);
+    const ingredientsExtra = [];
+    var conversions = ['cup', 'cups', 'tablespoon', 'teaspoon', 'tablespoons', 'teaspoons']
 
     //Eval would work in this case, but eval is unsafe and should never be used in this scenario (script injection attacks)
     for (let i = 0; i < copy.length; i++) {
-      if (imap.get(copy[i]) && Number(imap.get(copy[i])[0]) !== NaN && Number(amount[i]) !== NaN) {
-        imap.set(copy[i], [+imap.get(copy[i])[0] + +(this.fracToDec(amount[i])),units[i]])
+      let item = imap.get(copy[i]);
+      if (item && Number(item[0]) !== NaN && Number(amount[i]) !== NaN) {
+        if (item[1] === units[i] || item[1].concat('s') === units[i] || item[1] === '' || units[i] === '') { //cup===cups
+          imap.set(copy[i], [+item[0] + +(this.fracToDec(amount[i])), units[i]])
+        } else {
+          if (conversions.includes(item[1]) && conversions.includes(units[i])) {
+            // 1 teaspoon = 1/3 tablespoon. 
+            // 1 cup = 16 tablespoons.
+            // 1 cup = 48 teaspoons.
+            var mapUnit = conversions[conversions.indexOf(item[1])]
+            var newUnit = conversions[conversions.indexOf(units[i])]
+            if ((mapUnit === 'tablespoon' || mapUnit === 'tablespoons') && (newUnit === 'teaspoon' || newUnit === 'teaspoons')) {
+              imap.set(copy[i], [+item[0] + 3 * (+(this.fracToDec(amount[i]))), units[i]]);
+            } else if ((mapUnit === 'teaspoon' || mapUnit === 'teaspoons') && (newUnit === 'tablespoon' || newUnit === 'tablespoons')) {
+              imap.set(copy[i], [(+item[0]) / 3 + +(this.fracToDec(amount[i])), units[i]])
+            } else if ((mapUnit === 'tablespoon' || mapUnit === 'tablespoons') && (newUnit === 'cup' || newUnit === 'cups')) {
+              imap.set(copy[i], [(+item[0]) * 0.0625 + +(this.fracToDec(amount[i])), units[i]])
+            }
+            else if ((mapUnit === 'cup' || mapUnit === 'cups') && (newUnit === 'tablespoon' || newUnit === 'tablespoons')) {
+              imap.set(copy[i], [(+item[0]) + 16 * (+(this.fracToDec(amount[i]))), units[i]])
+            }
+            else if ((mapUnit === 'teaspoon' || mapUnit === 'teaspoons') && (newUnit === 'cup' || newUnit === 'cups')) {
+              imap.set(copy[i], [(+item[0]) * 0.02083 + +(this.fracToDec(amount[i])), units[i]])
+            }
+            else if ((mapUnit === 'cup' || mapUnit === 'cups') && (newUnit === 'teaspoon' || newUnit === 'teaspoons')) {
+              imap.set(copy[i], [(+item[0]) + 48 * (+(this.fracToDec(amount[i]))), units[i]])
+            }
+
+          } else {
+            ingredientsExtra.push([...item,copy[i]]);
+            imap.set(copy[i], [item[0], units[i]])
+          }
+        }
       }
       else {
-        imap.set(copy[i], [this.fracToDec(amount[i]),units[i]]);
+        imap.set(copy[i], [this.fracToDec(amount[i]), units[i]]);
       }
     }
-
+    
     this.clearedIngredients = imap;
+    this.extraIngredients = ingredientsExtra;
   }
 
   fracToDec(s) {
-    console.log(s);
     var y = s.split(' ');
     if (y.length > 1) {
       var z = y[1].split('/');
