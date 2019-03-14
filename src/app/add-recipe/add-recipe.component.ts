@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Recipe } from '../recipe';
+import { RecipeService } from '../recipe.service';
+import {MatSnackBar} from '@angular/material'
 
 @Component({
   selector: 'app-add-recipe',
@@ -9,12 +11,12 @@ import { Recipe } from '../recipe';
   styleUrls: ['./add-recipe.component.scss']
 })
 
-export class AddRecipeComponent implements OnInit{
-  
+export class AddRecipeComponent implements OnInit {
+
   form: FormGroup;
   ingredientList: FormArray;
 
-  constructor(private fb : FormBuilder){ 
+  constructor(private recipeService : RecipeService, private fb : FormBuilder){
   };
 
   createIngredient(): FormGroup {
@@ -26,39 +28,40 @@ export class AddRecipeComponent implements OnInit{
 
   ngOnInit() {
     this.form = this.fb.group({
-      title:[null, Validators.required],
-      instruction:[null],
+      title: [null, Validators.required],
+      instruction: [null],
       ingredients: this.fb.array([this.createIngredient()])
     });
     this.ingredientList = this.form.get('ingredients') as FormArray;
   }
 
-  addIngredient(){
+  addIngredient() {
     this.ingredientList.push(this.createIngredient());
   }
 
-  removeIngredient(index){
-    this.ingredientList.removeAt(index);
+  removeIngredient(index) {
+    if (this.ingredientList.length > 1) {
+      this.ingredientList.removeAt(index);
+    } else {
+      alert("The recipe needs to contain at least one ingredient");
+    }
   }
 
-  getIngredientsFormGroup(index) : FormGroup {
+  getIngredientsFormGroup(index): FormGroup {
     this.ingredientList = this.form.get('ingredients') as FormArray;
     const formGroup = this.ingredientList.controls[index] as FormGroup;
     return formGroup;
   }
 
-  get ingredientFormGroup(){
+  get ingredientFormGroup() {
     return this.form.get('ingredients') as FormArray;
   }
 
-  onSubmit(){
-    
+  onSubmit() {
     var ingredientsArr = [];
-    
-    for(var i = 0; i < this.form.value.ingredients.length; i++){
-      ingredientsArr.push( this.form.value.ingredients[i].ingredient +  this.form.value.ingredients[i].amount)
+    for (var i = 0; i < this.form.value.ingredients.length; i++) {
+      ingredientsArr.push(this.form.value.ingredients[i].ingredient + this.form.value.ingredients[i].amount)
     }
-
     const obj = {
       title: this.form.get('title').value,
       directions: this.form.get('instruction').value,
@@ -66,11 +69,13 @@ export class AddRecipeComponent implements OnInit{
       recipe_id: '',
       day: '',
       recipe_url: ''
-      
+
     }
 
-    return new Recipe(obj);
-    
+    if(this.recipeService.addRecipe(new Recipe(obj))) {
+      //open dialog here.
+    } else {
+      window.alert()
+    }    
   }
-
 }
