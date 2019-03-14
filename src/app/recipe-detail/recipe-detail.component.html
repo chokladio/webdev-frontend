@@ -1,6 +1,6 @@
 <div *ngIf="recipe && recipe.recipe_id" class="mat-typography">
   <div class="header-image">
-    <img src="assets/{{recipe.recipe_id}}.jpg" alt="">
+    <img src="assets/{{recipe.recipe_id}}.jpg" onError="this.src='assets/logo_transparent.png';" alt="">
     <div class="text"><span><h1>{{recipe.title}}</h1></span></div>
   </div>
   <div style="padding:10px;">

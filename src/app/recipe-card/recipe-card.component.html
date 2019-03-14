@@ -16,7 +16,7 @@
       </mat-card-title>
     </mat-card-header>
     <div *ngIf="recipe && recipe.recipe_id">
-      <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" alt="{{recipe.title}}">
+      <img mat-card-image src="assets/{{recipe.recipe_id}}.jpg" onError="this.src='assets/logo_transparent.png';" alt="">
     </div>
   </a>
   <mat-card-actions>
