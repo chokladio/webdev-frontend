@@ -66,9 +66,27 @@ export class WeekviewComponent implements OnInit {
 
     this.sds.getSelectedDays().map(val => this.selectedDays.push(val));
     if (this.selectedDays.length === 0) {
-      //Promise is required, otherwise we try to load a dialog before the view has been initialized.
+      if (JSON.parse(localStorage.getItem(this.getWeekNumber().toString()))) {
+        this.recipeService.getRecipesAPI().subscribe(recipes => {
+          this.allRecipes = recipes
+          let newDays: Day[] = [];
+          let storedRecipesAny: any[] = JSON.parse(localStorage.getItem(this.getWeekNumber().toString()));
+          let storedRecipes: Recipe[] = [];
+          storedRecipesAny.forEach(item => {
+            let recipe:Recipe = new Recipe(item);
+            storedRecipes.push(recipe);
+          });
+          storedRecipes.forEach((recipe: Recipe) => {
+              this.recipeService.addRecipe(recipe);
+              newDays.push({ day: recipe.day, selected: true, recipe_id: recipe.recipe_id, title: recipe.title });
+          })
+          this.selectedDays = newDays;
+        })
+      } else {
+        //Promise is required, otherwise we try to load a dialog before the view has been initialized.
       //In the future, consider placing alert window in ngAfterViewInit instead.
-      Promise.resolve().then(() => this.warn());
+        Promise.resolve().then(() => this.warn());
+      }
     } else {
       this.recipeService.getRecipesAPI().subscribe(recipes => {
         this.allRecipes = recipes
@@ -154,7 +172,6 @@ export class WeekviewComponent implements OnInit {
       })
     })
     this.selectedDays = newDays;
-    console.log(this.selectedDays);
   } 
 
 }
