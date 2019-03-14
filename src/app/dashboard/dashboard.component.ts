@@ -3,9 +3,9 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertBoxComponent } from './alert-box/alert-box.component';
 import { MatDialog } from '@angular/material';
-import { SelectedDaysService} from '../selecteddays.service';
-import { RecipeService} from '../recipe.service';
-import { Recipe} from '../recipe';
+import { SelectedDaysService } from '../selecteddays.service';
+import { RecipeService } from '../recipe.service';
+import { Recipe } from '../recipe';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,7 @@ import { Recipe} from '../recipe';
 })
 
 export class DashboardComponent implements OnInit {
-  private recipes: Recipe[] =[];
+  private recipes: Recipe[] = [];
 
   selections = {
     days: [
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
   submitted = false;
   form;
 
-  constructor(private recipeService : RecipeService, private selectedDaysService : SelectedDaysService, private fb: FormBuilder, private router: Router,private dialog:MatDialog) {
+  constructor(private recipeService: RecipeService, private selectedDaysService: SelectedDaysService, private fb: FormBuilder, private router: Router, private dialog: MatDialog) {
     this.form = this.fb.group({
       days: this.buildDays()
     });
@@ -76,7 +76,7 @@ export class DashboardComponent implements OnInit {
   }
 
   saveSomeRecipes() {
-    for(var i = 0; i<5 ; i++) {
+    for (var i = 0; i < 5; i++) {
       this.recipeService.addRecipe(this.recipes[i]);
     }
   }

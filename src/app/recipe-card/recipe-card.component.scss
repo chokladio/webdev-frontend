@@ -23,7 +23,6 @@
 }
 
 .recipe-card:hover {
-  //transform:scale(1.03);
   border-radius: 0;
 }
 
@@ -42,8 +41,7 @@
 }
 
 .selected {
-  background-color: #888 !important;
-  color: white;
+  background-color: #3f51b559 !important;
 }
 @media (max-width: 600px) {
   .recipe-card {
