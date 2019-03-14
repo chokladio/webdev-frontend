@@ -40,8 +40,8 @@ export class RecipeService {
     );
   }
 
-  createNewRecipeAPI(recipe:Recipe): Observable<String> {
-    return this.httpClient.post<String>(`${this.baseUrl}recipes/create`,JSON.stringify(recipe),this.httpOptions)
+  createNewRecipeAPI(recipe:Recipe): Observable<string> {
+    return this.httpClient.post<string>(`${this.baseUrl}recipes/create`,JSON.stringify(recipe),this.httpOptions)
   }
 
 
