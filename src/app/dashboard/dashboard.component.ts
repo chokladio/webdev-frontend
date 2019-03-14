@@ -6,11 +6,13 @@ import { MatDialog } from '@angular/material';
 import { SelectedDaysService} from '../selecteddays.service';
 import { RecipeService} from '../recipe.service';
 import { Recipe} from '../recipe';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
 export class DashboardComponent implements OnInit {
   private recipes: Recipe[] =[];
 
@@ -76,7 +78,7 @@ export class DashboardComponent implements OnInit {
   saveSomeRecipes() {
     for(var i = 0; i<5 ; i++) {
       this.recipeService.addRecipe(this.recipes[i]);
-    } 
+    }
   }
 
   ngOnInit() {
