@@ -1,7 +1,12 @@
+<div class="fullscreen-bg">
+  <video autoplay muted loop id="backgroundVideo" class="fullscreen-bg__video">
+    <source src="assets/backdrop.webm" type="video/webm">
+  </video>
+</div>
 <h2>Welcome</h2>
 <h3>Check the boxes for the days you want recipes!</h3>
 
-<div class="checkbox-form" [formGroup]="form" >
+<div class="checkbox-form" [formGroup]="form">
   <div style="max-width:1000px" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
     <div id="aoi" *ngFor="let day of days.controls; let i = index">
       <label>
